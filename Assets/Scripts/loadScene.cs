@@ -16,7 +16,7 @@ public class loadScene : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("MainCamera")) || (other.CompareTag("toBrightness")))
+        if ((other.CompareTag("MainCamera")))
         {
 
             kkg.enabled = true;
