@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/brightness.unity
     guid: eeb3ce82c3ff76e4ea85afeda897177e
+  - enabled: 1
+    path: Assets/Scenes/forest.unity
+    guid: 3a30e3bbeb9410c43b67ce23a7b1ab63
