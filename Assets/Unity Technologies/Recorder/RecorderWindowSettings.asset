@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0205cb8957891b44b142689caa23987, type: 3}
+  m_Name: RecorderWindowSettings
+  m_EditorClassIdentifier: 
+  m_Settings: {fileID: 0}
+--- !u!114 &114156428093434900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfd129ef371e0b468332962917d1a8b, type: 3}
+  m_Name: Scene-Stored
+  m_EditorClassIdentifier: 
+  m_DisplayName: Animation
+  m_Id: b2982186-1f08-48a5-9c5b-c2ac888d120a
+  m_TypeName: UnityEditor.Experimental.Recorder.Input.AnimationInputSettings, Assembly-CSharp-Editor,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &114767603103412604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f55b158f7c43688c1c21ce05ac46ba, type: 3}
+  m_Name: RecorderWindowSettings
+  m_EditorClassIdentifier: 
+  m_AssetID: eb70f9d239098d041bfe9a5864020555
+  m_CaptureEveryNthFrame: 1
+  m_FrameRateMode: 1
+  m_FrameRate: 30
+  m_FrameRateExact: 1
+  m_StartFrame: 0
+  m_EndFrame: 10
+  m_StartTime: 0
+  m_EndTime: 1
+  m_DurationMode: 0
+  m_SynchFrameRate: 1
+  m_BaseFileName:
+    m_Pattern: 
+  m_DestinationPath:
+    m_root: 1
+    m_leaf: Recordings
+  m_InputsSettings:
+    m_InputsSettingsAssets:
+    - {fileID: 0}
+    ownerRecorderSettingsAssetId: eb70f9d239098d041bfe9a5864020555
+  m_RecorderTypeName: UnityEditor.Experimental.Recorder.AnimationRecorder, Assembly-CSharp-Editor,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  outputPath: AnimRecorder<take>/<goName>_<input>
+  take: 1
