@@ -1,0 +1,3 @@
+[submodule "VRTK"]
+	path = VRTK
+	url = https://github.com/thestonefox/VRTK
