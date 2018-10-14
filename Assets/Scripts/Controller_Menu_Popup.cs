@@ -82,6 +82,7 @@ namespace VRTK
                 isShown = true;
                 InitTweenMenuScale(isShown);
             }
+            gameObject.GetComponent<Select_Scene_Option>().ResetOption();
         }
 
         /// <summary>
@@ -132,7 +133,6 @@ namespace VRTK
 
         private void Controller_Menu_Popup_TriggerClicked(object sender, ControllerInteractionEventArgs e)
         {
-            print("made it here");
             // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
             if (isInPopup)
             {
@@ -165,25 +165,16 @@ namespace VRTK
                     transform.rotation = Quaternion.LookRotation((rotateTowards.position - transform.position) * -1, Vector3.up);
                 }
             }
-
-            if (isPendingSwipeCheck)
-            {
-                CalculateSwipeAction();
-            }
         }
 
         protected virtual void BindControllerEvents()
         {
-            controllerEvents.TouchpadTouchStart += new ControllerInteractionEventHandler(DoTouchpadTouched);
-            controllerEvents.TouchpadTouchEnd += new ControllerInteractionEventHandler(DoTouchpadUntouched);
-            controllerEvents.TouchpadAxisChanged += new ControllerInteractionEventHandler(DoTouchpadAxisChanged);
+            controllerEvents.TouchpadPressed += ControllerEvents_TouchpadPressed;
         }
 
         protected virtual void UnbindControllerEvents()
         {
-            controllerEvents.TouchpadTouchStart -= new ControllerInteractionEventHandler(DoTouchpadTouched);
-            controllerEvents.TouchpadTouchEnd -= new ControllerInteractionEventHandler(DoTouchpadUntouched);
-            controllerEvents.TouchpadAxisChanged -= new ControllerInteractionEventHandler(DoTouchpadAxisChanged);
+            controllerEvents.TouchpadPressed -= ControllerEvents_TouchpadPressed;
         }
 
         protected virtual void InitTweenMenuScale(bool show)
@@ -223,115 +214,16 @@ namespace VRTK
             }
         }
 
-        protected virtual void DoTouchpadTouched(object sender, ControllerInteractionEventArgs e)
+        private void ControllerEvents_TouchpadPressed(object sender, ControllerInteractionEventArgs e)
         {
-            touchStartPosition = new Vector2(e.touchpadAxis.x, e.touchpadAxis.y);
-            touchStartTime = Time.time;
-            isTrackingSwipe = true;
-        }
-
-        protected virtual void DoTouchpadUntouched(object sender, ControllerInteractionEventArgs e)
-        {
-            isTrackingSwipe = false;
-            isPendingSwipeCheck = true;
-        }
-
-        protected virtual void DoTouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
-        {
-            ChangeAngle(CalculateAngle(e));
-
-            if (isTrackingSwipe)
+            if (e.touchpadAxis.y >= 0.5)
             {
-                touchEndPosition = new Vector2(e.touchpadAxis.x, e.touchpadAxis.y);
+                PanelMenuItemController.SwipeTop(gameObject);
             }
-        }
-
-        protected virtual void ChangeAngle(float angle, object sender = null)
-        {
-            currentAngle = angle;
-        }
-
-        protected virtual void CalculateSwipeAction()
-        {
-            isPendingSwipeCheck = false;
-
-            float deltaTime = Time.time - touchStartTime;
-            Vector2 swipeVector = touchEndPosition - touchStartPosition;
-            float velocity = swipeVector.magnitude / deltaTime;
-
-            if ((velocity > SwipeMinVelocity) && (swipeVector.magnitude > SwipeMinDist))
+            else
             {
-                swipeVector.Normalize();
-                float angleOfSwipe = Vector2.Dot(swipeVector, xAxis);
-                angleOfSwipe = Mathf.Acos(angleOfSwipe) * Mathf.Rad2Deg;
-
-                // Left / right
-                if (angleOfSwipe < AngleTolerance)
-                {
-                    OnSwipeRight();
-                }
-                else if ((180.0f - angleOfSwipe) < AngleTolerance)
-                {
-                    OnSwipeLeft();
-                }
-                else
-                {
-                    // Top / bottom
-                    angleOfSwipe = Vector2.Dot(swipeVector, yAxis);
-                    angleOfSwipe = Mathf.Acos(angleOfSwipe) * Mathf.Rad2Deg;
-                    if (angleOfSwipe < AngleTolerance)
-                    {
-                        OnSwipeTop();
-                    }
-                    else if ((180.0f - angleOfSwipe) < AngleTolerance)
-                    {
-                        OnSwipeBottom();
-                    }
-                }
+                PanelMenuItemController.SwipeBottom(gameObject);
             }
-        }
-
-        protected virtual void OnSwipeLeft()
-        {
-            PanelMenuItemController.SwipeLeft(gameObject);
-        }
-
-        protected virtual void OnSwipeRight()
-        {
-            PanelMenuItemController.SwipeRight(gameObject);
-        }
-
-        protected virtual void OnSwipeTop()
-        {
-            PanelMenuItemController.SwipeTop(gameObject);
-        }
-
-        protected virtual void OnSwipeBottom()
-        {
-            PanelMenuItemController.SwipeBottom(gameObject);
-        }
-
-        protected virtual float CalculateAngle(ControllerInteractionEventArgs e)
-        {
-            return e.touchpadAngle;
-        }
-
-        protected virtual float NormAngle(float currentDegree, float maxAngle = 360)
-        {
-            if (currentDegree < 0) currentDegree = currentDegree + maxAngle;
-            return currentDegree % maxAngle;
-        }
-
-        protected virtual bool CheckAnglePosition(float currentDegree, float tolerance, float targetDegree)
-        {
-            float lowerBound = NormAngle(currentDegree - tolerance);
-            float upperBound = NormAngle(currentDegree + tolerance);
-
-            if (lowerBound > upperBound)
-            {
-                return targetDegree >= lowerBound || targetDegree <= upperBound;
-            }
-            return targetDegree >= lowerBound && targetDegree <= upperBound;
         }
     }
 }

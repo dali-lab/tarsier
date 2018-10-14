@@ -28,10 +28,11 @@ public class Select_Scene_Option : MonoBehaviour {
         Menu.PanelMenuItemSwipeTop += Menu_PanelMenuItemSwipeTop;
     }
 
-    //On start, auto-selects first button
-    public void Start()
+    //Every time menu is reshown, first button is selected
+    public void ResetOption()
     {
-        buttons[0].Select();
+        currIndex = 0;
+        buttons[currIndex].Select();
     }
 
     private void Menu_PanelMenuItemSwipeTop(object sender, PanelMenuItemControllerEventArgs e)
