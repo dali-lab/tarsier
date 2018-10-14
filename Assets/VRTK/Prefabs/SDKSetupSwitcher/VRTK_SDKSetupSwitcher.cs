@@ -55,10 +55,7 @@ namespace VRTK
         {
             fallbackCamera.gameObject.SetActive(false);
             eventSystem.gameObject.SetActive(false);
-            if (chooseButton)
-            {
-                chooseButton.gameObject.SetActive(false);
-            }
+            chooseButton.gameObject.SetActive(false);
         }
 
         protected virtual void OnEnable()
@@ -75,10 +72,7 @@ namespace VRTK
         {
             VRTK_SDKManager.UnsubscribeLoadedSetupChanged(OnLoadedSetupChanged);
 
-            if (switchButton)
-            {
-                switchButton.onClick.RemoveListener(OnSwitchButtonClick);
-            }
+            switchButton.onClick.RemoveListener(OnSwitchButtonClick);
             cancelButton.onClick.RemoveListener(OnCancelButtonClick);
 
             Show(ViewingState.Status);

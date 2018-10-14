@@ -1,0 +1,777 @@
+// If you are using IntelliJ Rider, you can simply turn on the SCSS compiler, otherwise here is how to convert scss to uss
+//		# Install Sass
+//				gem install sass
+//
+//		# Convert
+//				sass --sourcemap=none --style=expanded --scss --no-cache Main_Dark.scss Main_Dark.uss
+//				sass --sourcemap=none --style=expanded --scss --no-cache Main_Light.scss Main_Light.uss
+//
+//		# Watch
+//				sass --watch --sourcemap=none --style=expanded --scss --no-cache Main_Light.scss:Main_Light.uss Main_Dark.scss:Main_Dark.uss
+//
+//	Sass to Uss Notes
+//		- Sass converts rgb(0,0,0) to css 'black'. Uss doesn't support named colors. The workaround is to set the color in sass as #000000
+//
+// Uss Notes
+//		Runtime\UIElements\Managed\StyleSheets\StyleSheetCache.cs:50 to see which properties are available (until there is a doc)
+
+//--------------------------------------------------------------------------------------------------
+// Helper Mixins
+//--------------------------------------------------------------------------------------------------
+
+@mixin border($top, $right, $bottom, $left) {
+	@if $top != 'auto' {border-top-width: $top;}
+	@if $left != 'auto' {border-left-width: $right;}
+	@if $bottom != 'auto' {border-bottom-width: $bottom;}
+	@if $right != 'auto' {border-right-width: $left;}
+}
+
+@mixin border-box($width: 1) {
+	@include border($width, $width, $width, $width);
+}
+
+@mixin padding($top, $right, $bottom, $left) {
+	@if $top != 'auto' {padding-top: $top;}
+	@if $left != 'auto' {padding-left: $left;}
+	@if $bottom != 'auto' {padding-bottom: $bottom;}
+	@if $right != 'auto' {padding-right: $right;}
+}
+
+@mixin padding-box($size) {
+	@include padding($size, $size, $size, $size);
+}
+
+@mixin margin($top, $right, $bottom, $left) {
+	@if $top != 'auto' {margin-top: $top;}
+	@if $left != 'auto' {margin-left: $left;}
+	@if $bottom != 'auto' {margin-bottom: $bottom;}
+	@if $right != 'auto' {margin-right: $right;}
+}
+
+@mixin margin-box($size) {
+	@include margin($size, $size, $size, $size);
+}
+
+@mixin slice($top, $right, $bottom, $left) {
+	@if $top != 'auto' {slice-top: $top;}
+	@if $left != 'auto' {slice-left: $left;}
+	@if $bottom != 'auto' {slice-bottom: $bottom;}
+	@if $right != 'auto' {slice-right: $right;}
+}
+
+@mixin slice-box($size) {
+	@include slice($size, $size, $size, $size);
+}
+
+@mixin position($top, $right, $bottom, $left) {
+	@if $top != 'auto' {position-top: $top;}
+	@if $left != 'auto' {position-left: $left;}
+	@if $bottom != 'auto' {position-bottom: $bottom;}
+	@if $right != 'auto' {position-right: $right;}
+}
+
+@mixin text-clip() {
+	overflow: hidden;
+}
+
+@mixin selected-element() {
+	background-color: $unity-list-selected-background;
+	text-color: $unity-text-color-highlight;
+}
+
+@mixin active-tab() {
+	background-color: $unity-background-dark-contrast;
+	text-color: $unity-text-color-highlight;
+}
+
+@mixin inactive-tab() {
+	background-color: $unity-background-light-contrast;
+	text-color: $unity-text-color;
+}
+
+@mixin button($top, $right, $bottom, $left) {
+	flex: 0;
+
+	@include padding($top, $right, $bottom, $left);
+	@include slice(4, 6, 4, 6);
+
+	&.display-none {
+		position: absolute;
+		border-radius: 0;
+		width: 0;
+		height: 0;
+		min-height: 0;
+		max-height: 0;
+		min-width: 0;
+		max-width: 0;
+		border-top: 0;
+		border-left: 0;
+		border-bottom: 0;
+		border-right: 0;
+		@include border-box(0);
+		@include padding-box(0);
+		@include margin-box(0);
+		@include slice-box(0);
+	}
+
+	&:hover {
+		text-color: $unity-text-color;
+	}
+}
+
+@mixin button-box($size) {
+	@include button($size, $size, $size, $size);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Font
+//--------------------------------------------------------------------------------------------------
+
+@mixin font-small() {
+	font-size: 9;
+}
+
+@mixin font-normal() {
+	font-size: 12;
+}
+
+//--------------------------------------------------------------------------------------------------
+// Styles
+//--------------------------------------------------------------------------------------------------
+
+#container {
+	position-type: absolute;
+	@include position(0, 0, 0, 0);
+}
+
+.display-none {
+	position: absolute;
+	border-radius: 0;
+	width: 0;
+	height: 0;
+	min-height: 0;
+	max-height: 0;
+	min-width: 0;
+	max-width: 0;
+	border-top: 0;
+	border-left: 0;
+	border-bottom: 0;
+	border-right: 0;
+	@include border-box(0);
+	@include padding-box(0);
+	@include margin-box(0);
+}
+
+.row {
+	flex: 1;
+	flex-direction: row;
+}
+
+.column {
+	flex: 1;
+	flex-direction: column;
+}
+
+.tag {
+	@include border-box(1);
+	@include padding(1, 3, 1, 3);
+	@include font-small();
+	border-radius: 5;
+	text-alignment: middle-center;
+
+	border-color: #000000;
+	text-color: #000000;
+}
+
+$spinner-large-size: 32;
+$spinner-large-half-size: 16;
+$spinner-normal-size: 16;
+$spinner-normal-half-size: 8;
+
+#detailListView {
+	flex: 1;
+	flex-direction: row;
+
+	.link {
+		text-color: $link-text-color;
+		background: rgba(0, 0, 0, 0);
+		background-image: none;
+		@include margin-box(0);
+		@include padding-box(0);
+		cursor: link;
+	}
+
+	.emptyArea {
+		flex: 1;
+		position-type: absolute;
+		@include position(0, 0, auto, 0);
+		@extend .column;
+
+		.title {
+			text-alignment: middle-center;
+			font-size: 18;
+			font-style: bold;
+		}
+
+		.loading {
+			position-type: relative;
+			@include position($spinner-normal-half-size, auto, auto, $spinner-normal-half-size);
+
+			@include border-box(0);
+			@include padding-box(0);
+			@include margin-box(0);
+			@include slice-box(0);
+
+			width: $spinner-normal-size;
+			height: $spinner-normal-size;
+			max-width: $spinner-normal-size;
+			max-height: $spinner-normal-size;
+		}
+	}
+
+	#headerTitle {
+		flex: 1;
+		font-size: 12;
+		font-style: bold;
+		text-color: $unity-text-color;
+	}
+
+	#headerCaret {
+		flex: 0;
+		font-size: 12;
+		font-style: bold;
+		text-color: $unity-text-color;
+		min-width: 16;
+	}
+
+	#spinnerContainer {
+		position-type: absolute;
+		@include position(0, 0, auto, 0);
+
+		flex: 0.1;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.loading {
+		position-type: relative;
+		@include position($spinner-normal-half-size, auto, auto, $spinner-normal-half-size);
+
+		@include border-box(0);
+		@include padding-box(0);
+		@include margin-box(0);
+		@include slice-box(0);
+
+		width: $spinner-normal-size;
+		height: $spinner-normal-size;
+		max-width: $spinner-normal-size;
+		max-height: $spinner-normal-size;
+	}
+
+	.combo {
+		@extend .row;
+		@include margin-box(3);
+		@include padding-box(3);
+
+		.popup {
+			@include padding(0, 0, 0, 8);
+			@include margin-box(0);
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		.button {
+			flex: 1; // Make buttons take all the parent's free space
+
+			@include font-normal();
+			@include border-box(0);
+			@include margin-box(0);
+			@include padding(2, 6, 3, 6);
+			@include slice(4, $background-button-slice-middle, 4, $background-button-slice-middle);
+
+			text-alignment: middle-center;
+			border-left: 0;
+			border-top: 0;
+			border-right: 0;
+			border-bottom: 0;
+			background-image: resource($background-mid-button);
+
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+
+			&.selected {
+				background-image: resource($background-mid-button-selected);
+				text-color: $unity-text-color-highlight;
+			}
+
+			&.first {
+				@include slice(4, $background-button-slice-right, 4, 6);
+				background-image: resource($background-left-button);
+
+				&.selected {
+					background-image: resource($background-left-button-selected);
+				}
+			}
+
+			&.last {
+				@include slice(4, 6, 4, $background-button-slice-left);
+				background-image: resource($background-right-button);
+
+				&.selected {
+					background-image: resource($background-right-button-selected);
+				}
+			}
+
+
+			&.small {
+				flex: 0.5;
+				@include padding(0, 0, 0, 0);
+			}
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	// Package List
+	//--------------------------------------------------------------------------------------------------
+	#packageListGroup {
+		$min-filter-tabs-height: 38;
+
+		width: 270;
+
+		#tabsGroup {
+			min-height: $min-filter-tabs-height;
+			margin-bottom: 0;
+		}
+
+		#listContainerOuter {
+			@extend .column;
+		}
+
+		#groupContainerOuter {
+			@include margin(0, 0, 5, 0);
+
+			#headerContainer {
+				flex: 1;
+				flex-direction: row;
+				align-items: center;
+
+				@include margin(0, 10, 0, 10);
+
+				#headerTitle {
+					@include text-clip();
+					@include margin(0, 0, 0, 0);
+				}
+
+				#headerCaret {
+					@include text-clip();
+					@include margin(0, 0, 0, 0);
+					text-color: $caret-text-color;
+				}
+			}
+
+			#groupContainer {
+				@include margin(0, 0, 0, 15);
+			}
+		}
+
+		#packageList, #listContainer, #listGroups {
+			@extend .column;
+		}
+
+		#scrollView {
+			@extend .column;
+
+			#VerticalScroller {
+				position-bottom: 0;
+			}
+
+			#HorizontalScroller {
+				height: 0;
+			}
+
+			#ContentViewport {
+				position-bottom: 0;
+
+				#ContentView {
+					position-right: 0;
+					position-left: 0;
+				}
+			}
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	// Package Item
+	//--------------------------------------------------------------------------------------------------
+	.package {
+		flex: 1;
+		flex-direction: row;
+		align-items: center;
+		@include margin(0, 0, 0, 0);
+		border-color: rgba(0,0,0, 0.5);
+		border-bottom-width: 1;
+
+		&.selected {
+			@include selected-element();
+
+			#packageName, #packageVersion {
+				text-color: $unity-text-color-highlight;
+			}
+
+			&.not-installed {
+				@include selected-element();
+			}
+		}
+
+		&.not-installed {
+			background-color: $not-installed-package-background-color;
+		}
+
+		.name {
+			flex: 1;
+			@include font-normal();
+			margin-right: 5;
+			@include text-clip();
+		}
+
+		.version {
+			@include font-small;
+		}
+
+		.status {
+			flex: 0;
+			width: 14;
+			height: 14;
+
+			&.outdated {
+ 				background-image: resource($background-status-outdated);
+			}
+
+			&.inprogress {
+ 				background-image: resource($background-status-inprogress);
+			}
+
+			&.error {
+ 				background-image: resource($background-status-error);
+			}
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	// Package Details
+	//--------------------------------------------------------------------------------------------------
+	#detailsGroup {
+		flex: 1;
+		border-left-width: 1px;
+		border-color: rgba(0,0,0, 0.5);
+
+		#detailsContainer {
+			flex: 1;
+			flex-direction: column;
+			position-type: relative;
+		}
+	}
+
+	#detailView {
+		flex: 1;
+
+		#VerticalScroller {
+			position-bottom: 0;
+		}
+
+		#ContentViewport {
+
+			#ContentView {
+				position-type: absolute;
+				@include position(0, 0, auto, 0);
+			}
+		}
+
+		.detail {
+			flex: 1;
+			flex-direction: column;
+			@include padding-box(5);
+
+			.header {
+				flex: 1;
+				flex-direction: row;
+				align-items: flex-start;
+
+				margin-bottom: 8;
+
+				#titleContainer {
+					flex: 0.9;
+
+					#detailTitle {
+						font-size: 18;
+						font-style: bold;
+						word-wrap: true;
+						@include margin(0, 0, 0, 4);
+					}
+				}
+
+				$controls-height: 19;
+				#detailsControls {
+					flex: 1;
+					height: $controls-height;
+					flex-direction: row;
+					align-items: center;
+					flex-wrap: wrap;
+					@include margin(3, 0, 0, 0);
+				}
+
+				#updateCombo {
+					flex: 1;
+					height: $controls-height;
+					align-items: center;
+					@include margin(0, 0, 0, 0);
+					@include padding(0, 0, 0, 0);
+
+					#updateDropdownContainer {
+						min-width: 65;
+						max-width: 150;
+						height: $controls-height;
+						flex: 0;
+
+						.popup {
+							@include font-normal();
+							height: $controls-height;
+
+							&:focus {
+								background-image: $popup-background;
+							}
+
+							&:hover {
+								text-color: $unity-text-color;
+							}
+						}
+					}
+
+					.action {
+						flex: 0; // Make buttons take all the parent's free space
+						@include margin-box(0);
+						@include font-normal();
+						@include padding(2, 4, 3, 4);
+						position-right: -3;
+
+						&:hover {
+							text-color: $unity-text-color;
+						}
+					}
+				}
+
+				#updateContainer {
+					height: $controls-height;
+					flex: 1;
+					align-items: flex-end;
+
+					@include padding-box(0);
+				}
+
+
+
+				.button {
+					height: $controls-height;
+					@include font-normal();
+					@include button(3,3,4,3);
+				}
+			}
+
+			#detailVersion {
+				flex: 1;
+				font-size: 16;
+				max-height: 30;
+			}
+
+			#detailName {
+				flex: 1;
+				max-height: 20;
+				font-style: italic;
+			}
+
+			#detailPackageStatus {
+				flex: 1;
+				font-style: bold;
+				word-wrap: true;
+			}
+
+			#detailTag {
+				width: 60;
+				@include font-normal();
+				border-radius: 5;
+				border-color: rgb(180, 180, 180);
+				@include border-box(2);
+				text-alignment: middle-center;
+			}
+
+			#detailDesc, #detailModuleReference {
+				flex: 1;
+				@include font-normal();
+				word-wrap: true;
+
+				&.empty {
+					font-style: italic;
+				}
+			}
+
+			#detailAuthor {
+				flex: 1;
+				@include font-normal();
+				word-wrap: true;
+
+				@include margin(auto, auto, 5, auto);
+			}
+
+			#changeLogContainer, #viewLicensesContainer {
+				flex: 0;
+				flex-direction: row;
+			}
+
+			#detailActions, .detailActions {
+				flex: 0;
+				flex-direction: row;
+				margin-left: 2;
+
+				@extend .row;
+
+				.detailAction {
+					@include margin(auto, 0, auto, 0);
+					@include padding(auto, 2, auto, 2);
+					border-left: 2;
+					border-right: 2;
+				}
+
+				.detailActionSeparator {
+					@include margin(auto, 0, auto, 0);
+					@include padding(auto, 0, auto, 0);
+					border-left: 0;
+					border-right: 0;
+				}
+
+				#thirdPartyNoticeLabel {
+					@include margin(4, 0, 4, 0);
+					@include padding-box(0);
+				}
+
+				#viewThirdParty {
+					border-right: 0;
+				}
+			}
+
+			.versionContainer {
+				@extend .row;
+				align-items: center;
+
+				#detailVersion {
+					flex: 0;
+				}
+			}
+
+			.tag {
+				border-color: $package-tag-color;
+				text-color: $package-tag-color;
+
+				&.verified {
+					border-color: $package-tag-recommended-color;
+					text-color: $package-tag-recommended-color;
+				}
+			}
+
+			.tagLines {
+			}
+
+			.tagLine {
+				@extend .row;
+			}
+
+			.tagContainer {
+			}
+		}
+	}
+
+	#detailError {
+		position-type: absolute;
+		@include position(5, 5, auto, 5);
+		min-height: 200;
+		word-wrap: true;
+
+		&.display-none {
+			@include position(0, 0, 0, 0);
+			width: 0;
+			height: 0;
+			min-height: 0;
+			max-height: 0;
+			@include border-box(0);
+			@include padding-box(0);
+			@include margin-box(0);
+		}
+	}
+
+	#packagesLoading {
+		flex: 0;
+		@include margin(2, 0, 2, 0);
+
+		border-color: rgba(0, 0, 0, 0.5);
+		@include border(1, 0, 0, 0);
+	}
+
+	#loadingContainer {
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+
+		margin-left: 2;
+
+		#loadingText {
+			margin-left: 0;
+			padding-left: 2;
+		}
+	}
+}
+
+.alert {
+	background-color: rgba(200,0,0,0.8);
+	border-color: #FF0000;
+	flex-direction: row;
+
+	@include border-box(1);
+	@include padding(5, 10, 5, 10);
+
+	#alertMessage {
+		flex: 1;
+		text-color: $unity-text-color-highlight;
+		word-wrap: true;
+		@include text-clip();
+	}
+
+	#close {
+		flex: 0;
+		max-height: 30;
+		@include position(auto, auto, auto, 5);
+		@include button(3,3,4,3);
+	}
+}
+
+.spinner {
+	flex: 0;
+	@include position(-$spinner-normal-half-size, auto, auto, -$spinner-normal-half-size);
+
+	width: $spinner-normal-size;
+	height: $spinner-normal-size;
+	max-width: $spinner-normal-size;
+	max-height: $spinner-normal-size;
+	background-image: resource($background-spinner-normal);
+}
+
+.largeSpinner {
+	flex: 0;
+	@include position(-$spinner-large-half-size, auto, auto, -$spinner-large-half-size);
+
+	width: $spinner-large-size;
+	height: $spinner-large-size;
+	max-width: $spinner-large-size;
+	max-height: $spinner-large-size;
+	background-image: resource($background-spinner-large);
+}

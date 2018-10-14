@@ -1,3 +1,6 @@
 [submodule "VRTK"]
 	path = VRTK
 	url = https://github.com/thestonefox/VRTK
+[submodule "steamvr_unity_plugin"]
+	path = steamvr_unity_plugin
+	url = https://github.com/ValveSoftware/steamvr_unity_plugin.git
