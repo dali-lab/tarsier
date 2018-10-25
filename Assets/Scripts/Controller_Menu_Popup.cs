@@ -39,38 +39,9 @@ namespace VRTK
         // Relates to scale of canvas on panel items.
         protected const float CanvasScaleSize = 0.001f;
 
-        // Swipe sensitivity / detection.
-        protected const float AngleTolerance = 30f;
-        protected const float SwipeMinDist = 0.2f;
-        protected const float SwipeMinVelocity = 4.0f;
-
         protected VRTK_ControllerEvents controllerEvents;
-        protected readonly Vector2 xAxis = new Vector2(1, 0);
-        protected readonly Vector2 yAxis = new Vector2(0, 1);
-        protected Vector2 touchStartPosition;
-        protected Vector2 touchEndPosition;
-        protected float touchStartTime;
-        protected float currentAngle;
-        protected bool isTrackingSwipe = false;
-        protected bool isPendingSwipeCheck = false;
-        protected bool isInPopup = false;
         protected bool isShown = false;
-        protected Coroutine tweenMenuScaleRoutine;
-
-        /// <summary>
-        /// The ToggleMenu method is used to show or hide the menu.
-        /// </summary>
-        public virtual void ToggleMenu()
-        {
-            if (isShown)
-            {
-                HideMenu(true);
-            }
-            else
-            {
-                ShowMenu();
-            }
-        }
+        //protected Coroutine tweenMenuScaleRoutine;
 
         /// <summary>
         /// The ShowMenu method is used to show the menu.
@@ -79,36 +50,22 @@ namespace VRTK
         {
             if (!isShown)
             {
-                isShown = true;
-                InitTweenMenuScale(isShown);
+                PanelMenuItemController.Show(gameObject);
             }
+            canvasObject.transform.localScale = Vector3.one * CanvasScaleSize;
+            isShown = true;
             gameObject.GetComponent<Select_Scene_Option>().ResetOption();
         }
 
         /// <summary>
         /// The HideMenu method is used to hide the menu.
         /// </summary>
-        /// <param name="force">If true then the menu is always hidden.</param>
-        public virtual void HideMenu(bool force)
-        {
-            if (isShown && force)
-            {
-                isShown = false;
-                InitTweenMenuScale(isShown);
-            }
-        }
-
-        /// <summary>
-        /// The HideMenuImmediate method is used to immediately hide the menu.
-        /// </summary>
-        public virtual void HideMenuImmediate()
+        public virtual void HideMenu()
         {
             if (isShown)
             {
                 PanelMenuItemController.Hide(gameObject);
-                HideMenu(true);
             }
-            transform.localScale = Vector3.zero;
             canvasObject.transform.localScale = Vector3.zero;
             isShown = false;
         }
@@ -134,15 +91,14 @@ namespace VRTK
         private void Controller_Menu_Popup_TriggerClicked(object sender, ControllerInteractionEventArgs e)
         {
             // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
-            if (isInPopup)
+            if (isShown)
             {
                 gameObject.GetComponent<Select_Scene_Option>().Execute();
+                UnbindControllerEvents();
             }
             else
             {
-                PanelMenuItemController.Show(gameObject);
                 ShowMenu();
-                isInPopup = true;
                 BindControllerEvents();
             }
         }
@@ -177,42 +133,42 @@ namespace VRTK
             controllerEvents.TouchpadPressed -= ControllerEvents_TouchpadPressed;
         }
 
-        protected virtual void InitTweenMenuScale(bool show)
-        {
-            if (tweenMenuScaleRoutine != null)
-            {
-                StopCoroutine(tweenMenuScaleRoutine);
-            }
-            if (enabled)
-            {
-                tweenMenuScaleRoutine = StartCoroutine(TweenMenuScale(show));
-            }
-        }
+        //protected virtual void InitTweenMenuScale(bool show)
+        //{
+        //    if (tweenMenuScaleRoutine != null)
+        //    {
+        //        StopCoroutine(tweenMenuScaleRoutine);
+        //    }
+        //    if (enabled)
+        //    {
+        //        tweenMenuScaleRoutine = StartCoroutine(TweenMenuScale(show));
+        //    }
+        //}
 
-        protected virtual IEnumerator TweenMenuScale(bool show)
-        {
-            float targetScale = 0;
-            Vector3 direction = -1 * Vector3.one;
-            if (show)
-            {
-                canvasObject.transform.localScale = new Vector3(CanvasScaleSize, CanvasScaleSize, CanvasScaleSize);
-                targetScale = zoomScaleMultiplier;
-                direction = Vector3.one;
-            }
-            int i = 0;
-            while (i < 250 && ((show && transform.localScale.x < targetScale) || (!show && transform.localScale.x > targetScale)))
-            {
-                transform.localScale += direction * Time.deltaTime * 4f * zoomScaleMultiplier;
-                yield return true;
-                i++;
-            }
-            transform.localScale = direction * targetScale;
+        //protected virtual IEnumerator TweenMenuScale(bool show)
+        //{
+        //    float targetScale = 0;
+        //    Vector3 direction = -1 * Vector3.one;
+        //    if (show)
+        //    {
+        //        canvasObject.transform.localScale = new Vector3(CanvasScaleSize, CanvasScaleSize, CanvasScaleSize);
+        //        targetScale = zoomScaleMultiplier;
+        //        direction = Vector3.one;
+        //    }
+        //    int i = 0;
+        //    while (i < 250 && ((show && transform.localScale.x < targetScale) || (!show && transform.localScale.x > targetScale)))
+        //    {
+        //        canvasObject.transform.localScale += direction * Time.deltaTime * 4f * zoomScaleMultiplier;
+        //        yield return true;
+        //        i++;
+        //    }
+        //    canvasObject.transform.localScale = direction * targetScale;
 
-            if (!show)
-            {
-                canvasObject.transform.localScale = Vector3.zero;
-            }
-        }
+        //    if (!show)
+        //    {
+        //        canvasObject.transform.localScale = Vector3.zero;
+        //    }
+        //}
 
         private void ControllerEvents_TouchpadPressed(object sender, ControllerInteractionEventArgs e)
         {

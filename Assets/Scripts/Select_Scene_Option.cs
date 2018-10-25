@@ -28,10 +28,10 @@ public class Select_Scene_Option : MonoBehaviour {
         Menu.PanelMenuItemSwipeTop += Menu_PanelMenuItemSwipeTop;
     }
 
-    //Every time menu is reshown, first button is selected
+    //Every time menu is reshown, the cancel button is selected
     public void ResetOption()
     {
-        currIndex = 0;
+        currIndex = buttons.Length - 1;
         buttons[currIndex].Select();
     }
 

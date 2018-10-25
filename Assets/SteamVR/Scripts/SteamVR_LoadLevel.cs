@@ -236,18 +236,27 @@ public class SteamVR_LoadLevel : MonoBehaviour
 		// and that the progress bar transform (if any) is a child and will follow along.
 		if (loadingScreen != null && loadingScreenDistance > 0.0f)
 		{
-			// Wait until we have tracking.
-			var hmd = SteamVR_Controller.Input((int)OpenVR.k_unTrackedDeviceIndex_Hmd);
-			while (!hmd.hasTracking)
-				yield return null;
+            //// Wait until we have tracking.
+            //var hmd = SteamVR_Controller.Input((int)OpenVR.k_unTrackedDeviceIndex_Hmd);
+            //while (!hmd.hasTracking)
+            //	yield return null;
 
-			var tloading = hmd.transform;
-			tloading.rot = Quaternion.Euler(0.0f, tloading.rot.eulerAngles.y, 0.0f);
-			tloading.pos += tloading.rot * new Vector3(0.0f, 0.0f, loadingScreenDistance);
+            //var tloading = hmd.transform;
+            //tloading.rot = Quaternion.Euler(0.0f, tloading.rot.eulerAngles.y, 0.0f);
+            //tloading.pos += tloading.rot * new Vector3(0.0f, 0.0f, loadingScreenDistance);
 
-			var t = loadingScreenTransform != null ? loadingScreenTransform : transform;
-			t.position = tloading.pos;
-			t.rotation = tloading.rot;
+            Transform hmd = this.transform;
+            if (Camera.main != null)
+                hmd = Camera.main.transform;
+
+            Quaternion rot = Quaternion.Euler(0.0f, hmd.eulerAngles.y, 0.0f);
+            Vector3 pos = hmd.position + (rot * new Vector3(0.0f, 0.0f, loadingScreenDistance));
+
+            var t = loadingScreenTransform != null ? loadingScreenTransform : transform;
+            //t.position = tloading.pos;
+            //t.rotation = tloading.rot;
+            t.position = pos;
+            t.rotation = rot;
 		}
 
 		_active = this;
@@ -287,36 +296,36 @@ public class SteamVR_LoadLevel : MonoBehaviour
 
 		// Optionally set a skybox to use as a backdrop in the compositor.
 		var compositor = OpenVR.Compositor;
-		if (compositor != null)
-		{
-			if (front != null)
-			{
-				SteamVR_Skybox.SetOverride(front, back, left, right, top, bottom);
+        if (compositor != null)
+        {
+            if (front != null)
+            {
+                SteamVR_Skybox.SetOverride(front, back, left, right, top, bottom);
 
-				// Explicitly fade to the compositor since loading will cause us to stop rendering.
-				compositor.FadeGrid(fadeOutTime, true);
-				yield return new WaitForSeconds(fadeOutTime);
-			}
-			else if (backgroundColor != Color.clear)
-			{
-				// Otherwise, use the specified background color.
-				if (showGrid)
-				{
-					// Set compositor background color immediately, and start fading to it.
-					compositor.FadeToColor(0.0f, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a, true);
-					compositor.FadeGrid(fadeOutTime, true);
-					yield return new WaitForSeconds(fadeOutTime);
-				}
-				else
-				{
-					// Fade the foreground color in (which will blend on top of the scene), and then cut to the compositor.
-					compositor.FadeToColor(fadeOutTime, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a, false);
-					yield return new WaitForSeconds(fadeOutTime + 0.1f);
-					compositor.FadeGrid(0.0f, true);
-					fadedForeground = true;
-				}
-			}
-		}
+                // Explicitly fade to the compositor since loading will cause us to stop rendering.
+                compositor.FadeGrid(fadeOutTime, true);
+                yield return new WaitForSeconds(fadeOutTime);
+            }
+            else if (backgroundColor != Color.clear)
+            {
+                // Otherwise, use the specified background color.
+                if (showGrid)
+                {
+                    // Set compositor background color immediately, and start fading to it.
+                    compositor.FadeToColor(0.0f, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a, true);
+                    compositor.FadeGrid(fadeOutTime, true);
+                    yield return new WaitForSeconds(fadeOutTime);
+                }
+                else
+                {
+                    // Fade the foreground color in (which will blend on top of the scene), and then cut to the compositor.
+                    compositor.FadeToColor(fadeOutTime, backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a, false);
+                    yield return new WaitForSeconds(fadeOutTime + 0.1f);
+                    compositor.FadeGrid(0.0f, true);
+                    fadedForeground = true;
+                }
+            }
+        }
 
 		// Now that we're fully faded out, we can stop submitting frames to the compositor.
 		SteamVR_Render.pauseRendering = true;
