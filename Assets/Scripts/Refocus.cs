@@ -5,6 +5,7 @@ using UnityEngine.PostProcessing;
 
 // @author: MixPixVisuals on Youtube (Creating a simple auto-focus in Unity 5)
 // updated by Stephen Liao for new Post Processing Stack and smoother focus by using gradual updating
+// updated by Naman Goyal, to change to Updating every .1 seconds through the Update instead of InvokeRepeating
 public class Refocus : MonoBehaviour {
     public PostProcessingProfile profile;
     private float updateRate = .1f;
@@ -12,7 +13,7 @@ public class Refocus : MonoBehaviour {
 
     private float time_since_last_update = 0f;
 
-    int mask = 1 << 0;
+    int mask = 1;
     RaycastHit hit;
 
     void Update () {
@@ -20,7 +21,7 @@ public class Refocus : MonoBehaviour {
         Debug.Log(Time.timeScale);
         if (time_since_last_update < .1) return;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, float.MaxValue, mask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 100, mask))
         {
             DepthOfFieldModel.Settings dofSettings = profile.depthOfField.settings;
             dofSettings.focusDistance = getGradualFocusDistance(hit.distance, dofSettings.focusDistance);

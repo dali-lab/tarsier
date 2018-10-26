@@ -196,7 +196,6 @@ namespace VRTK
             {
                 isShown = true;
                 InitTweenMenuScale(isShown);
-                gameObject.GetComponent<RectTransform>().transform.localScale = Vector3.one;
             }
         }
 
@@ -224,7 +223,6 @@ namespace VRTK
             {
                 isShown = false;
                 InitTweenMenuScale(isShown);
-                gameObject.GetComponent<RectTransform>().transform.localScale = Vector3.zero;
             }
         }
 

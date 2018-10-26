@@ -32,7 +32,17 @@ public class Select_Scene_Option : MonoBehaviour {
     public void ResetOption()
     {
         currIndex = buttons.Length - 1;
-        buttons[currIndex].Select();
+        Activate(currIndex);
+    }
+
+    // Helper function that takes the index and makes that button the only active one
+    public void Activate(int index)
+    {
+        foreach (Button but in buttons)
+        {
+            but.interactable = false;
+        }
+        buttons[index].interactable = true;
     }
 
     private void Menu_PanelMenuItemSwipeTop(object sender, PanelMenuItemControllerEventArgs e)
@@ -55,7 +65,7 @@ public class Select_Scene_Option : MonoBehaviour {
     private void MoveButton(Direction dir)
     {
         currIndex = (dir == Direction.down) ? Math.Min(buttons.Length - 1, currIndex + 1) : Math.Max(0, currIndex - 1);
-        buttons[currIndex].Select();
+        Activate(currIndex);
     }
 
 

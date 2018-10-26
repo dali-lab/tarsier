@@ -613,11 +613,9 @@ namespace VRTK
         protected virtual void CreatePointerOriginTransformFollow()
         {
             pointerOriginTransformFollowGameObject = new GameObject(VRTK_SharedMethods.GenerateVRTKObjectName(true, gameObject.name, "BasePointerRenderer_Origin_Smoothed"));
-            ReenableTeleport.smoothed_thing = pointerOriginTransformFollowGameObject;
             pointerOriginTransformFollow = pointerOriginTransformFollowGameObject.AddComponent<VRTK_TransformFollow>();
-            pointerOriginTransformFollow.enabled = true;
-            pointerOriginTransformFollow.gameObjectToFollow = GameObject.FindGameObjectWithTag("RController");
-            pointerOriginTransformFollow.moment = VRTK_TransformFollow.FollowMoment.OnUpdate;
+            pointerOriginTransformFollow.enabled = false;
+            pointerOriginTransformFollow.moment = VRTK_TransformFollow.FollowMoment.OnFixedUpdate;
             pointerOriginTransformFollow.followsScale = false;
         }
 
