@@ -1,31 +1,37 @@
 # Tarsier Googles
-The Tarsier Goggles Project aims to let a user experience the world through the eyes of a tarsier. The game focuses on different vision adaptions and the everyday life of these unique animals
+The Tarsier Goggles Project aims to let a user experience the world through the eyes of a tarsier. The experience focuses on different vision adaptions and the everyday life of these unique animals.
 
-# Setup
+# Setup for development
 
-You will need VR-ready Windows PC, with a copy of Unity 5.5 or newer installed on your machine. It is also essential to have an HTC Vive with all hardware installed and the software configured and updated. 
+You will need VR-ready Windows PC, with a copy of Unity 2018.2.12. It is also essential to have an HTC Vive with all hardware installed and the software configured and updated. 
 
-In the Unity Application, open the Scenes folder of under Assets. Pull in the forest, brightness, .... scenes. Make sure the Main Room Scene is loaded and press play to begin. Make sure that HTC Vive and its controllers are powered on and connected!
+Open the top level project folder in Unity, and run the "Start" Scerne to begin the experience.
+
+# Setup for play
+
+You will need a VR-ready Windows 10 PC, with an HTC Vive with all its hardware installed and all the software configured and updated.
+You can then run the built experience, found in the Builds folder. 
 
 ## Gameplay
-* Enable/Disable Vision - the radial menu on the right controller enables and disables Tarsier Visions
-* Teleport - Click on the left controller button and laser should pop up from the controller. Point the laser to the location you want to teleport to. Green will indicate if teleportation to that location is valid. Let go of the button and you will be teleported there. 
-* Pick Up Goggles - when you find a pair of tarsier goggles, move the controller over the object. It should highlight. Hold the trigger and you should be able to pick it up. If you put the goggles on (your head), you will be teleported to a new station.  
-* Return to Main Room - Click on the home button. You will be teleported back to the Main Room. 
+* Change which animal's eyes you see through- Click on different parts of the Right Trackpad to change from Human to Tarsier vision and back.
+* Teleport - Click on the right trigger button and a laser pointer will appear from the controller, signalling where the player will teleport to when the trigger is released. The pointer will be blue if the location is valid, and yellow if the location is not.
+* Changing Scenes - Click on the left trigger button to bring up a menu of different scenes to choose from. Then, clicking on the top and bottom of the left trackpad will change the selected option, and clicking on the left trigger again will move you to the chosen scene (or escape the menu, if "Cancel" is chosen).
 
 # Architecture
 The project is developed using [Unity](https://unity3d.com/) with models created in Maya.
-There are two main scenes: indoor "museum" scene and the outdoor forest scenes.
-Any environment the tarsier/player is in can have a Human toggle and a Tarsier toggle. The "toggle" capacity should be the same for any environment the player is in.
+There are four main scenes, with different controls enabled.
 
-* Indoor Museum Scene: the indoor scene consists of a generic room environment with several stations that highlight the biological features of the tariers.
-* Forest Scene: The forest consists of an "infinite" environment where in tarier mode the player is in the trees and can jump from tree to tree, but not other locations. For implementation, each tree is surrounded by an invisible quad object with the IncludeTeleport tag. 
+* Landing Scene: This is the scene that the player will be first placed in, and where they will choose to have their experience be guided or unguided.
+* Crazy Rods Scene: The scene consists of many rods at different rotations and placements relative to the player. There are differently coloured lights throughout the scene. Teleportation is disabled here.
+* Maze Scene: The scene consists of a small maze that the player can teleport around. The maze has very dim, differently coloured lights around the scene.
+* Forest Scene: The forest consists of an "infinite" environment where the player is in the trees and can jump from tree to tree (or vine). 
 
 ## Vision
-The toggled vision is created with components on the controller and SteamVR Camera Eye Game objects. 
+The toggled vision is created with components on the SteamVR Camera Eye Game object.
 
 # Assets
 The project relies on a some premade Unity Assets movement and vision features.
+
 ## Steam VR Plugin
 The SteamVR plugin connects the Unity Project to the HTC Vive. 
 
@@ -33,18 +39,21 @@ The SteamVR plugin connects the Unity Project to the HTC Vive.
 We use the Post Processing Component on the Camera Eye object for the depth of field and vingette (limited vision) effects
 
 ## Colorblindness
-The Colorblind component provides the red-green colorblindness 
+The Colorblind component provides the red-green colorblindness that Tarsiers have.
 
 ## VRTK
-We use the VRTK assets to enable teleportation and vision. In particular we use the Radial Menu Scripts and Dash Teleport. Under the \[VRTK Scripts\] are LeftController and RightController GameObjects. Scripts and modifications should be added to these controllers. 
-https://vrtoolkit.readme.io/
-We plan to use the Steam VR plugin (assets that provide easy development in VR).
+We use the VRTK assets to enable teleportation and vision. In particular we use Radial Menu Scripts, Teleportation Scripts, and Panel Menu Scripts.
 
 # Tech Stack
 - Unity
-- SteamVR Plugin
+- SteamVR
 - Maya
 
-# Scenes
-### Brightness
-This scene aims to illustrate the difference in brightness perception between Tarsier and Human vision. It contains a model of a maze imported from Maya, and aims to interactively demonstrate to users how the brightness disparity may affect movement and mobility. The scene currently uses HapticPulse to alert users when they hit into a wall; however, there is no easy way to prevent users from actually accidentally walking through a wall at the moment. In the future, if possible, perhaps it would be better to use a different maze model - such as a series of stacked boxes - that made it easier for the game to prevent users from moving through the objects.
+# Modes of Play
+When opened, the experience allows a player to choose to have their experience be "Guided" or "Unguided"
+
+## Guided
+In this version, recommended for first-time players, the player will have controls taught to them incrementally, and have those controls locked until that time. The player will be instantly teleported to the Crazy Rod Room, where they will be taught about switching between Tarsier and Human Vision. When the player has spent enough time in there, they will be prompted to teleport to the Maze, where they will also be introduced to Teleportation. After a certain amount of time and movement in the maze, the player will be prompted to move to the Forest, where they will be taught how to switch between scenes, and the guided part of the experience will end.
+
+## Unguided
+In this version, the player will haev all controls immediately enabled, and will be given no direction to switch between scenes.
