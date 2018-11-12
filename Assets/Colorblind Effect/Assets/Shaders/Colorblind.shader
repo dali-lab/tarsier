@@ -73,7 +73,7 @@ Shader "Hidden/Wilberforce/Colorblind"
 				// read the color from input texture
 				half4 color = tex2D(_MainTex, i.uv);
 				// matrix multiplication with color-shifting matrix - index specified by 'type' variable
-				float3 x = mul(color.rgb, color_matrices[type]);
+				float3 x = mul(color.rgb, color_matrices[2]);
 				// cast it to proper type before returning
 				return half4(x,1.0f);
 			}

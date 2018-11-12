@@ -53,7 +53,8 @@ namespace VRTK
                 PanelMenuItemController.Show(gameObject);
             }
             isShown = true;
-            InitTweenMenuScale(isShown);
+            //InitTweenMenuScale(isShown);
+            canvasObject.transform.localScale = Vector3.one * CanvasScaleSize;
             gameObject.GetComponent<Select_Scene_Option>().ResetOption();
         }
 
@@ -67,7 +68,8 @@ namespace VRTK
                 PanelMenuItemController.Hide(gameObject);
             }
             isShown = false;
-            InitTweenMenuScale(isShown);
+            //InitTweenMenuScale(isShown);
+            canvasObject.transform.localScale = Vector3.zero;
         }
 
         protected virtual void Awake()
