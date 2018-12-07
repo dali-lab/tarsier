@@ -2365,6 +2365,13 @@ input, select, textarea {
 			width: 100%;
 		}
 
+		.image.logo {
+			display: block;
+			width: 30%;
+			max-width: 30%;
+			margin: auto;
+		}
+
 			.image.fit img {
 				width: 100%;
 			}
@@ -3089,12 +3096,8 @@ input, select, textarea {
 
 	#footer {
 		padding: 6em 0 6em 0 ;
-		background-color: #4686a0;
+		background-color: rgb(55,55,55);
 		color: rgba(255, 255, 255, 0.75);
-		background-attachment: fixed,							fixed,							fixed;
-		background-image: url("images/overlay2.png"), url("images/overlay4.svg"), linear-gradient(45deg, #4361c2, #4fa49a 50%, #9dc66b 95%);
-		background-position: top left,						center center,					center center;
-		background-size: auto,							cover,							cover;
 		text-align: center;
 	}
 
