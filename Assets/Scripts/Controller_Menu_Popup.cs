@@ -5,18 +5,8 @@ namespace VRTK
     using UnityEngine;
 
     /// <summary>
-    /// Adds a top-level controller to handle the display of up to four child PanelMenuItemController items which are displayed as a canvas UI panel.
+    ///  My own script, taken from Panel Menu but changed to be on a controller instead of on another object
     /// </summary>
-    /// <remarks>
-    /// **Prefab Usage:**
-    ///  * Place the `VRTK/Prefabs/PanelMenu/PanelMenu` prefab as a child of the `VRTK_InteractableObject` the panel menu is for.
-    ///  * Optionally remove the panel control menu item child GameObjects if they are not required, e.g. `PanelTopControls`.
-    ///  * Set the panel menu item controllers on the `VRTK_PanelMenuController` script to determine which panel control menu items are available.
-    ///  * The available panel control menu items can be activated by pressing the corresponding direction on the touchpad.
-    /// </remarks>
-    /// <example>
-    /// `040_Controls_Panel_Menu` contains three basic interactive object examples of the PanelMenu in use.
-    /// </example>
     public class Controller_Menu_Popup : MonoBehaviour
     {
         public enum TouchpadPressPosition

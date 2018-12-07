@@ -258,9 +258,9 @@ namespace VRTK
         /// <param name="gameObjectName">The name of the wanted GameObject. If it contains a '/' character, this method traverses the hierarchy like a path name, beginning on the game object that has a component of type `T`.</param>
         /// <param name="searchAllScenes">If this is true, all loaded scenes will be searched. If this is false, only the active scene will be searched.</param>
         /// <returns>The GameObject with name `gameObjectName` and an ancestor that has a `T`. If no such GameObject is found then `null` is returned.</returns>
-        public static GameObject FindEvenInactiveGameObject<T>(string gameObjectName = null, bool searchAllScenes = false) where T : Component
+        public static GameObject FindEvenInactiveGameObject<T>(string name = null, bool searchAllScenes = false) where T : Component
         {
-            if (string.IsNullOrEmpty(gameObjectName))
+            if (string.IsNullOrEmpty(name))
             {
                 T foundComponent = FindEvenInactiveComponentsInValidScenes<T>(searchAllScenes, true).FirstOrDefault();
                 return foundComponent == null ? null : foundComponent.gameObject;
@@ -269,7 +269,7 @@ namespace VRTK
             return FindEvenInactiveComponentsInValidScenes<T>(searchAllScenes)
                        .Select(component =>
                        {
-                           Transform transform = component.gameObject.transform.Find(gameObjectName);
+                           Transform transform = component.gameObject.transform.Find(name);
                            return transform == null ? null : transform.gameObject;
                        })
                        .FirstOrDefault(gameObject => gameObject != null);

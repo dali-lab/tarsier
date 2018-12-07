@@ -263,11 +263,11 @@ namespace VRTK
             GameObject controller = GetSDKManagerControllerLeftHand(actual);
             if (controller == null && actual)
             {
-                controller = VRTK_SharedMethods.FindEvenInactiveGameObject<SteamVR_ControllerManager>("Controller (left)", true);
+                controller = VRTK_SharedMethods.FindEvenInactiveGameObject<SteamVR_ControllerManager>("Controller (left)", false);
             }
             return controller;
         }
-
+        
         /// <summary>
         /// The GetControllerRightHand method returns the GameObject containing the representation of the right hand controller.
         /// </summary>
