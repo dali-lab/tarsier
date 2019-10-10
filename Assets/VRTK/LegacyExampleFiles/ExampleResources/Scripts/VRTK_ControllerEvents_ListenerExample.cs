@@ -43,8 +43,10 @@
         public bool pinkyFingerSenseAxisEvents = true;
 
         private VRTK_ControllerEvents controllerEvents;
+        private int i = 0;                     //for scene menu
 
         public GameObject moveToNextScenePopup;
+        public GameObject visionPopup;
 
         private void OnEnable()
         {
@@ -271,12 +273,11 @@
                                  + " with a pressure of " + e.buttonPressure + " / Primary Touchpad axis at: " + e.touchpadAxis + " (" + e.touchpadAngle + " degrees)" + " / Secondary Touchpad axis at: " + e.touchpadTwoAxis + " (" + e.touchpadTwoAngle + " degrees)";
             VRTK_Logger.Info(debugString);
         }
-
+        
         private void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
         {
             if (triggerButtonEvents)
             {
-                moveToNextScenePopup.SetActive(true);
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "pressed", e);
             }
         }
@@ -285,7 +286,6 @@
         {
             if (triggerButtonEvents)
             {
-                moveToNextScenePopup.SetActive(false);
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "released", e);
             }
         }
@@ -486,7 +486,14 @@
         {
             if (buttonOneButtonEvents)
             {
-        
+                if (i == 0)
+                {
+                    moveToNextScenePopup.SetActive(true);
+                }
+                else
+                {
+                    moveToNextScenePopup.SetActive(false);
+                }
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON ONE", "pressed down", e);
             }
         }
@@ -495,6 +502,16 @@
         {
             if (buttonOneButtonEvents)
             {
+                if (i == 0)
+                {
+                    moveToNextScenePopup.SetActive(true);
+                    i = 1;
+                }
+                else
+                {
+                   moveToNextScenePopup.SetActive(false);
+                   i = 0;
+                }
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON ONE", "released", e);
             }
         }
@@ -519,6 +536,14 @@
         {
             if (buttonTwoButtonEvents)
             {
+                if (i == 0)
+                {
+                    visionPopup.SetActive(true);
+                }
+                else
+                {
+                    visionPopup.SetActive(false);
+                }
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON TWO", "pressed down", e);
             }
         }
@@ -527,6 +552,16 @@
         {
             if (buttonTwoButtonEvents)
             {
+                if (i == 0)
+                {
+                    visionPopup.SetActive(true);
+                    i = 1;
+                }
+                else
+                {
+                    visionPopup.SetActive(false);
+                    i = 0;
+                }
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON TWO", "released", e);
             }
         }
