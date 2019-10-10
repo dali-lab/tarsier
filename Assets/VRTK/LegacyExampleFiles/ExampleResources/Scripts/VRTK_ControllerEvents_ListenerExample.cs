@@ -44,6 +44,8 @@
 
         private VRTK_ControllerEvents controllerEvents;
 
+        public GameObject moveToNextScenePopup;
+
         private void OnEnable()
         {
             controllerEvents = GetComponent<VRTK_ControllerEvents>();
@@ -274,6 +276,7 @@
         {
             if (triggerButtonEvents)
             {
+                moveToNextScenePopup.SetActive(true);
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "pressed", e);
             }
         }
@@ -282,6 +285,7 @@
         {
             if (triggerButtonEvents)
             {
+                moveToNextScenePopup.SetActive(false);
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "released", e);
             }
         }
@@ -482,6 +486,7 @@
         {
             if (buttonOneButtonEvents)
             {
+        
                 DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON ONE", "pressed down", e);
             }
         }
