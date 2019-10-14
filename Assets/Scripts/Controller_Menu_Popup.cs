@@ -64,13 +64,15 @@ namespace VRTK
 
         protected virtual void Awake()
         {
-
+            Debug.Log("Controller_Menu_Popup Awake");
             controllerEvents = gameObject.GetComponent<VRTK_ControllerEvents>();
         }
 
         protected virtual void Start()
         {
-            controllerEvents.TriggerClicked += Controller_Menu_Popup_TriggerClicked;
+            Debug.Log("Controller_Menu_Popup: Start");
+            controllerEvents.ButtonOnePressed += Controller_Menu_Popup_DoButtonOnePressed;
+            //controllerEvents.TriggerClicked += Controller_Menu_Popup_TriggerClicked;
 
             if (canvasObject == null || canvasObject.GetComponent<Canvas>() == null)
             {
@@ -80,7 +82,7 @@ namespace VRTK
             canvasObject.transform.localScale = Vector3.zero;
         }
 
-        private void Controller_Menu_Popup_TriggerClicked(object sender, ControllerInteractionEventArgs e)
+        private void Controller_Menu_Popup_DoButtonOnePressed(object sender, ControllerInteractionEventArgs e)
         {
             // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
             if (isShown)
@@ -164,14 +166,17 @@ namespace VRTK
 
         private void ControllerEvents_TouchpadPressed(object sender, ControllerInteractionEventArgs e)
         {
-            if (e.touchpadAxis.y >= 0.5)
-            {
-                PanelMenuItemController.SwipeTop(gameObject);
-            }
-            else
-            {
-                PanelMenuItemController.SwipeBottom(gameObject);
-            }
+            Debug.Log("Controller_Menu_Popup: Touchpad Pressed!!");
+            PanelMenuItemController.SwipeTop(gameObject);
+
+            //if (e.touchpadAxis.y >= 0.5)
+            //{
+            //    PanelMenuItemController.SwipeTop(gameObject);
+            //}
+            //else
+            //{
+            //    PanelMenuItemController.SwipeBottom(gameObject);
+            //}
         }
     }
 }

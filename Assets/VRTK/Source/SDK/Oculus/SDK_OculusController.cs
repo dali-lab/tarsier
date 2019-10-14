@@ -689,7 +689,7 @@ namespace VRTK
                     bool isDefaultModel = (defaultSDKLeftControllerModel != null && defaultSDKRightControllerModel != null && GetControllerModel(ControllerHand.Left) == defaultSDKLeftControllerModel.gameObject && GetControllerModel(ControllerHand.Right) == defaultSDKRightControllerModel.gameObject);
                     if (avatar != null && isDefaultModel)
                     {
-                        avatar.AssetsDoneLoading.AddListener(BothControllersReady);
+                        //avatar.AssetsDoneLoading.AddListener(BothControllersReady);
                     }
                 }
 #endif

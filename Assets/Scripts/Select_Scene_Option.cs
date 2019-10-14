@@ -24,6 +24,8 @@ public class Select_Scene_Option : MonoBehaviour {
             print("Something isn't set correctly in select_scene_option");
         }
 
+        print("Select_Scene_Option Script: Awake");
+
         Menu.PanelMenuItemSwipeBottom += Menu_PanelMenuItemSwipeBottom;
         Menu.PanelMenuItemSwipeTop += Menu_PanelMenuItemSwipeTop;
     }

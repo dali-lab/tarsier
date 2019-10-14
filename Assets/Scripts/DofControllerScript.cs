@@ -14,10 +14,10 @@ public class DofControllerScript : MonoBehaviour {
 
     private void Start()
     {
-        nextScenePopup.GetComponent<Canvas>().enabled = false;
-        nextScenePopup.GetComponent<GoToNextScene>().enabled = false;
-        doMorePopup.GetComponent<Canvas>().enabled = false;
-        teachControlPopup.GetComponent<Canvas>().enabled = false;
+        nextScenePopup.GetComponent<Canvas>().enabled = true; //false
+        nextScenePopup.GetComponent<GoToNextScene>().enabled = true; //false
+        doMorePopup.GetComponent<Canvas>().enabled = true; //false
+        teachControlPopup.GetComponent<Canvas>().enabled = true; //false
 
         if (Global.guided)
         {
