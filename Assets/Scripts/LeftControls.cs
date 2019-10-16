@@ -21,7 +21,7 @@ public class LeftControls : MonoBehaviour {
         }
 
         controllerEvents.ButtonOnePressed += DoButtonOnePressed;
-        controllerEvents.ButtonTwoPressed += DoButtonTwoPressed;
+        //controllerEvents.ButtonTwoPressed += DoButtonTwoPressed;
     }
 
     private void OnDisable()
@@ -29,6 +29,7 @@ public class LeftControls : MonoBehaviour {
         if (controllerEvents != null)
         {
             controllerEvents.ButtonOnePressed -= DoButtonOnePressed;
+            //controllerEvents.ButtonTwoPressed -= DoButtonTwoPressed;
         }
     }
 
@@ -41,17 +42,18 @@ public class LeftControls : MonoBehaviour {
 
     private void DoButtonOnePressed(object sender, ControllerInteractionEventArgs e)
     {
-        moveToNextScenePopup.SetActive(!moveToNextScenePopup.activeSelf);
+        vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
+        vision.GetComponent<Wilberforce.Colorblind>().enabled = !vision.GetComponent<Wilberforce.Colorblind>().enabled;
+        vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = !vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled;
+        
+
         print("BUTTON ONE PRESSED");
         DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "BUTTON ONE", "pressed down", e);
     }
 
     private void DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
     {
-        visionPopup.SetActive(!visionPopup.activeSelf);
-        vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
-        vision.GetComponent<Wilberforce.Colorblind>().enabled = !vision.GetComponent<Wilberforce.Colorblind>().enabled;
-        vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = !vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled;
+        moveToNextScenePopup.SetActive(!moveToNextScenePopup.activeSelf);
 
 
         print("BUTTON TWO PRESSED");
