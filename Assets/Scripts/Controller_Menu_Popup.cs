@@ -19,6 +19,7 @@ namespace VRTK
         }
 
         public GameObject canvasObject;
+        public GameObject vision;
 
         private Transform rotateTowards;
         [Tooltip("The scale multiplier, which relates to the scale of parent interactable object.")]
@@ -33,8 +34,66 @@ namespace VRTK
         protected bool isShown = false;
         protected Coroutine tweenMenuScaleRoutine;
 
-        private bool movedDown = false;
-        private bool movedUp = false;
+        private void OnEnable()
+        {
+            controllerEvents = GetComponent<VRTK_ControllerEvents>();
+            if (controllerEvents == null)
+            {
+                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.REQUIRED_COMPONENT_MISSING_FROM_GAMEOBJECT, "VRTK_ControllerEvents_ListenerExample", "VRTK_ControllerEvents", "the same"));
+                return;
+            }
+
+            controllerEvents.ButtonOnePressed += ControllerEvents_ButtonOnePressed;
+            controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
+            controllerEvents.TriggerPressed += ControllerEvents_TriggerPressed;
+        }
+
+        private void OnDisable()
+        {
+            if (controllerEvents != null)
+            {
+                controllerEvents.ButtonOnePressed -= ControllerEvents_ButtonOnePressed;
+                controllerEvents.ButtonTwoPressed -= ControllerEvents_ButtonTwoPressed;
+                controllerEvents.TriggerPressed -= ControllerEvents_TriggerPressed;
+            }
+        }
+
+        private void ControllerEvents_ButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
+        {
+            if (isShown)
+            {
+                PanelMenuItemController.SwipeTop(gameObject);
+            }
+            else
+            {
+                ShowMenu();
+            }
+        }
+
+        private void ControllerEvents_ButtonOnePressed(object sender, ControllerInteractionEventArgs e)
+        {
+            if (!isShown)
+            {
+                vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
+                vision.GetComponent<Wilberforce.Colorblind>().enabled = !vision.GetComponent<Wilberforce.Colorblind>().enabled;
+                vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = !vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled;
+            }
+            else
+            {
+                PanelMenuItemController.SwipeBottom(gameObject);
+            }
+
+        }
+
+        private void ControllerEvents_TriggerPressed(object sender, ControllerInteractionEventArgs e)
+        {
+            if (isShown)
+            {
+                gameObject.GetComponent<Select_Scene_Option>().Execute();
+                HideMenu();
+
+            }
+        }
 
         /// <summary>
         /// The ShowMenu method is used to show the menu.
@@ -65,16 +124,16 @@ namespace VRTK
             canvasObject.transform.localScale = Vector3.zero;
         }
 
-        protected virtual void Awake()
-        {
-            Debug.Log("Controller_Menu_Popup Awake");
-            controllerEvents = gameObject.GetComponent<VRTK_ControllerEvents>();
-        }
+        //protected virtual void Awake()
+        //{
+        //    Debug.Log("Controller_Menu_Popup Awake");
+        //    controllerEvents = gameObject.GetComponent<VRTK_ControllerEvents>();
+        //}
 
         protected virtual void Start()
         {
             Debug.Log("Controller_Menu_Popup: Start");
-            controllerEvents.ButtonTwoPressed += Controller_Menu_Popup_DoButtonTwoPressed;
+            //controllerEvents.ButtonTwoPressed += Controller_Menu_Popup_DoButtonTwoPressed;
             //controllerEvents.TriggerClicked += Controller_Menu_Popup_TriggerClicked;
 
             if (canvasObject == null || canvasObject.GetComponent<Canvas>() == null)
@@ -85,20 +144,21 @@ namespace VRTK
             canvasObject.transform.localScale = Vector3.zero;
         }
 
-        private void Controller_Menu_Popup_DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
-        {
-            // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
-            if (isShown)
-            {
-                gameObject.GetComponent<Select_Scene_Option>().Execute();
-                UnbindControllerEvents();
-            }
-            else
-            {
-                ShowMenu();
-                BindControllerEvents();
-            }
-        }
+        //private void Controller_Menu_Popup_DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
+        //{
+        //    // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
+        //    if (isShown)
+        //    {
+        //        HideMenu();
+        //        gameObject.GetComponent<Select_Scene_Option>().Execute();
+        //        UnbindControllerEvents();
+        //    }
+        //    else
+        //    {
+        //        ShowMenu();
+        //        BindControllerEvents();
+        //    }
+        //}
 
         protected virtual void Update()
         {
@@ -120,19 +180,16 @@ namespace VRTK
             }
         }
 
-        protected virtual void BindControllerEvents()
-        {
-            controllerEvents.TouchpadAxisChanged += ControllerEvents_TouchpadAxisChanged;
-            controllerEvents.TouchpadTouchEnd += ControllerEvents_TouchReset;
-            controllerEvents.TouchpadTouchStart += ControllerEvents_TouchReset;
-        }
+        //protected virtual void BindControllerEvents()
+        //{
+        //    controllerEvents.TouchpadAxisChanged += ControllerEvents_TouchpadAxisChanged;
+        //}
 
-        protected virtual void UnbindControllerEvents()
-        {
-            controllerEvents.TouchpadAxisChanged -= ControllerEvents_TouchpadAxisChanged;
-            controllerEvents.TouchpadTouchEnd -= ControllerEvents_TouchReset;
-            controllerEvents.TouchpadTouchStart -= ControllerEvents_TouchReset;
-        }
+        //protected virtual void UnbindControllerEvents()
+        //{
+        //    controllerEvents.TouchpadAxisChanged -= ControllerEvents_TouchpadAxisChanged;
+
+        //}
 
         protected virtual void InitTweenMenuScale(bool show)
         {
@@ -171,37 +228,28 @@ namespace VRTK
             }
         }
 
-        private void ControllerEvents_TouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
-        {
-            Debug.Log("Controller_Menu_Popup: Touchpad Axis Changed!!");
+        //private void ControllerEvents_TouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
+        //{
+        //    Debug.Log("Controller_Menu_Popup: Touchpad Axis Changed!!");
 
-            float touchpadAngle = e.touchpadAngle;
+        //    float touchpadAngle = e.touchpadAngle;
            
-            if (touchpadAngle > 0 && touchpadAngle < 90 || touchpadAngle > 270)
-            {
-                PanelMenuItemController.SwipeTop(gameObject);
-                movedUp = true;
-                movedDown = false;
+        //    if ((touchpadAngle > 0 && touchpadAngle < 70 || touchpadAngle > 300))
+        //    {
+        //        PanelMenuItemController.SwipeTop(gameObject);
 
-            } else if (touchpadAngle > 90 && touchpadAngle < 270)
-            {
+        //    } else if ((touchpadAngle > 0 && touchpadAngle < 240))
+        //    {
            
-                PanelMenuItemController.SwipeBottom(gameObject);
-                movedDown = true;
-                movedUp = false;
-            } else
-            {
-                movedDown = false;
-                movedUp = false;
-            }
-
-            
-        }
+        //        PanelMenuItemController.SwipeBottom(gameObject);
+           
+        //    } else
+        //    {
         
-        private void ControllerEvents_TouchReset(object sender, ControllerInteractionEventArgs e)
-        {
-            movedUp = false;
-            movedDown = false;
-        }
+        //    }
+        //}
+
+        
+        
     }
 }

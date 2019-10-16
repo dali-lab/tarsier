@@ -71,3 +71,5 @@ public class LeftControls : MonoBehaviour {
 		
 	}
 }
+
+
