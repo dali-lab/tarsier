@@ -16,63 +16,68 @@ public class SceneStarter : MonoBehaviour {
 
         ControlsChangeHelper controls = gameObject.GetComponent<ControlsChangeHelper>();
 
-        switch (SceneManager.GetActiveScene().buildIndex)
-        {
-            // Tutorial
-            case 0:
-                controls.SceneSwitchControl(false);
-                controls.TeleportControl(false);
-                controls.VisionControl(false);
-                controls.StartupControl(true);
-                break;
-            // DOF
-            case 1:
-                if (Global.guided)
-                {
-                    controls.SceneSwitchControl(false);
-                    controls.TeleportControl(false);
-                    controls.VisionControl(true);
-                    controls.StartupControl(false);
-                }
-                else
-                {
-                    controls.SceneSwitchControl(true);
-                    controls.TeleportControl(false);
-                    controls.VisionControl(true);
-                    controls.StartupControl(false);
-                }
-                break;
-            // Brightness
-            case 2:
-                if (Global.guided)
-                {
-                    controls.SceneSwitchControl(false);
-                    controls.TeleportControl(true);
-                    controls.VisionControl(true);
-                    controls.StartupControl(false);
-                }
-                else
-                {
-                    controls.SceneSwitchControl(true);
-                    controls.TeleportControl(true);
-                    controls.VisionControl(true);
-                    controls.StartupControl(false);
-                }
-                break;
-            // Forest
-            case 3:
-                controls.SceneSwitchControl(true);
-                controls.TeleportControl(true);
-                controls.VisionControl(true);
-                controls.StartupControl(false);
-                break;
-            default:
-                Debug.Log("This should not happen");
-                controls.SceneSwitchControl(false);
-                controls.TeleportControl(false);
-                controls.VisionControl(false);
-                controls.StartupControl(false);
-                break;
-        }
+        controls.SceneSwitchControl(true);
+        controls.TeleportControl(true);
+        controls.VisionControl(true);
+        controls.StartupControl(false);
+
+        //switch (SceneManager.GetActiveScene().buildIndex)
+        //{
+        //    // Tutorial
+        //    case 0:
+        //        controls.SceneSwitchControl(false);
+        //        controls.TeleportControl(false);
+        //        controls.VisionControl(false);
+        //        controls.StartupControl(true);
+        //        break;
+        //    // DOF
+        //    case 1:
+        //        if (Global.guided)
+        //        {
+        //            controls.SceneSwitchControl(true);
+        //            controls.TeleportControl(true);
+        //            controls.VisionControl(true);
+        //            controls.StartupControl(false);
+        //        }
+        //        else
+        //        {
+        //            controls.SceneSwitchControl(true);
+        //            controls.TeleportControl(true);
+        //            controls.VisionControl(true);
+        //            controls.StartupControl(false);
+        //        }
+        //        break;
+        //    // Brightness
+        //    case 2:
+        //        if (Global.guided)
+        //        {
+        //            controls.SceneSwitchControl(false);
+        //            controls.TeleportControl(true);
+        //            controls.VisionControl(true);
+        //            controls.StartupControl(false);
+        //        }
+        //        else
+        //        {
+        //            controls.SceneSwitchControl(true);
+        //            controls.TeleportControl(true);
+        //            controls.VisionControl(true);
+        //            controls.StartupControl(false);
+        //        }
+        //        break;
+        //    // Forest
+        //    case 3:
+        //        controls.SceneSwitchControl(true);
+        //        controls.TeleportControl(true);
+        //        controls.VisionControl(true);
+        //        controls.StartupControl(false);
+        //        break;
+        //    default:
+        //        Debug.Log("This should not happen");
+        //        controls.SceneSwitchControl(false);
+        //        controls.TeleportControl(false);
+        //        controls.VisionControl(false);
+        //        controls.StartupControl(false);
+        //        break;
+        //}
     }
 }

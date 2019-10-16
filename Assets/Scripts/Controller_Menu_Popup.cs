@@ -33,6 +33,9 @@ namespace VRTK
         protected bool isShown = false;
         protected Coroutine tweenMenuScaleRoutine;
 
+        private bool movedDown = false;
+        private bool movedUp = false;
+
         /// <summary>
         /// The ShowMenu method is used to show the menu.
         /// </summary>
@@ -71,7 +74,7 @@ namespace VRTK
         protected virtual void Start()
         {
             Debug.Log("Controller_Menu_Popup: Start");
-            controllerEvents.ButtonOnePressed += Controller_Menu_Popup_DoButtonOnePressed;
+            controllerEvents.ButtonTwoPressed += Controller_Menu_Popup_DoButtonTwoPressed;
             //controllerEvents.TriggerClicked += Controller_Menu_Popup_TriggerClicked;
 
             if (canvasObject == null || canvasObject.GetComponent<Canvas>() == null)
@@ -82,7 +85,7 @@ namespace VRTK
             canvasObject.transform.localScale = Vector3.zero;
         }
 
-        private void Controller_Menu_Popup_DoButtonOnePressed(object sender, ControllerInteractionEventArgs e)
+        private void Controller_Menu_Popup_DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
         {
             // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
             if (isShown)
@@ -119,12 +122,16 @@ namespace VRTK
 
         protected virtual void BindControllerEvents()
         {
-            controllerEvents.TouchpadPressed += ControllerEvents_TouchpadPressed;
+            controllerEvents.TouchpadAxisChanged += ControllerEvents_TouchpadAxisChanged;
+            controllerEvents.TouchpadTouchEnd += ControllerEvents_TouchReset;
+            controllerEvents.TouchpadTouchStart += ControllerEvents_TouchReset;
         }
 
         protected virtual void UnbindControllerEvents()
         {
-            controllerEvents.TouchpadPressed -= ControllerEvents_TouchpadPressed;
+            controllerEvents.TouchpadAxisChanged -= ControllerEvents_TouchpadAxisChanged;
+            controllerEvents.TouchpadTouchEnd -= ControllerEvents_TouchReset;
+            controllerEvents.TouchpadTouchStart -= ControllerEvents_TouchReset;
         }
 
         protected virtual void InitTweenMenuScale(bool show)
@@ -164,19 +171,37 @@ namespace VRTK
             }
         }
 
-        private void ControllerEvents_TouchpadPressed(object sender, ControllerInteractionEventArgs e)
+        private void ControllerEvents_TouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
         {
-            Debug.Log("Controller_Menu_Popup: Touchpad Pressed!!");
-            PanelMenuItemController.SwipeTop(gameObject);
+            Debug.Log("Controller_Menu_Popup: Touchpad Axis Changed!!");
 
-            //if (e.touchpadAxis.y >= 0.5)
-            //{
-            //    PanelMenuItemController.SwipeTop(gameObject);
-            //}
-            //else
-            //{
-            //    PanelMenuItemController.SwipeBottom(gameObject);
-            //}
+            float touchpadAngle = e.touchpadAngle;
+           
+            if (touchpadAngle > 0 && touchpadAngle < 90 || touchpadAngle > 270)
+            {
+                PanelMenuItemController.SwipeTop(gameObject);
+                movedUp = true;
+                movedDown = false;
+
+            } else if (touchpadAngle > 90 && touchpadAngle < 270)
+            {
+           
+                PanelMenuItemController.SwipeBottom(gameObject);
+                movedDown = true;
+                movedUp = false;
+            } else
+            {
+                movedDown = false;
+                movedUp = false;
+            }
+
+            
+        }
+        
+        private void ControllerEvents_TouchReset(object sender, ControllerInteractionEventArgs e)
+        {
+            movedUp = false;
+            movedDown = false;
         }
     }
 }

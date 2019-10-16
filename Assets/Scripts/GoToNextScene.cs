@@ -8,13 +8,13 @@ public class GoToNextScene : MonoBehaviour {
 
     private void OnEnable()
     {
-        controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
+        controllerEvents.TriggerPressed += ControllerEvents_Trigger_Pressed;
         HighlightMaterial();
     }
 
     private void OnDisable()
     {
-        controllerEvents.ButtonTwoPressed -= ControllerEvents_ButtonTwoPressed;
+        controllerEvents.TriggerPressed -= ControllerEvents_Trigger_Pressed;
         UnHighlightMaterial();
     }
 
@@ -31,7 +31,7 @@ public class GoToNextScene : MonoBehaviour {
         menuButton.GetComponent<Renderer>().material.shader = Shader.Find("Standard");
     }
 
-    private void ControllerEvents_ButtonTwoPressed(object sender, VRTK.ControllerInteractionEventArgs e)
+    private void ControllerEvents_Trigger_Pressed(object sender, VRTK.ControllerInteractionEventArgs e)
     {
         ChangeScene();
     }
