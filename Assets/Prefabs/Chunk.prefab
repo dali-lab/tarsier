@@ -27,7 +27,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1668404483512320
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1785881894303360
 GameObject:
@@ -55,12 +55,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4228491236942712}
+  - component: {fileID: 114886249371471608}
   m_Layer: 0
   m_Name: Chunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4228491236942712
 Transform:
@@ -213,3 +214,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114886249371471608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785881894303360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c589b80a2dda54f97a10c14c5958c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RendererInfo:
+  - renderer: {fileID: 23965392620288816}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.78125, y: 0.78125, z: 0, w: 0}
+  - renderer: {fileID: 23701054610565130}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.23808943, y: 0.23808943, z: -0.0009656351, w: 0.7841906}
+  m_Lightmaps:
+  - {fileID: 2800000, guid: 45ce8b9bf242d6945aca6e3afbe1e84d, type: 3}
