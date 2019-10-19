@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3737ac7880c875459ee7cb1ce349f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewDistance: 100
+  CameraRig: {fileID: 0}
+  Chunk: {fileID: 1785881894303360, guid: 11b8ad17e15befe4c81ad814d9976828, type: 2}
+  GridSize: 5
