@@ -74,9 +74,12 @@ namespace VRTK
         {
             if (!isShown)
             {
-                vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
+                // Toggle vision effects
+                // vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
                 vision.GetComponent<Wilberforce.Colorblind>().enabled = !vision.GetComponent<Wilberforce.Colorblind>().enabled;
                 vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = !vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled;
+                vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = !vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled;
+                vision.GetComponent<DOFManager>().enabled = !vision.GetComponent<DOFManager>().enabled;
             }
             else
             {
@@ -124,17 +127,8 @@ namespace VRTK
             canvasObject.transform.localScale = Vector3.zero;
         }
 
-        //protected virtual void Awake()
-        //{
-        //    Debug.Log("Controller_Menu_Popup Awake");
-        //    controllerEvents = gameObject.GetComponent<VRTK_ControllerEvents>();
-        //}
-
         protected virtual void Start()
         {
-            Debug.Log("Controller_Menu_Popup: Start");
-            //controllerEvents.ButtonTwoPressed += Controller_Menu_Popup_DoButtonTwoPressed;
-            //controllerEvents.TriggerClicked += Controller_Menu_Popup_TriggerClicked;
 
             if (canvasObject == null || canvasObject.GetComponent<Canvas>() == null)
             {
