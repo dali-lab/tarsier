@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/old scenes/Tutorial.unity
     guid: c2616c07f0d09b544a03ad8ea6471354
   - enabled: 0
     path: Assets/Scenes/dof.unity
