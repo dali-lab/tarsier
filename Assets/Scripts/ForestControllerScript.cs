@@ -6,18 +6,21 @@ public class ForestControllerScript : MonoBehaviour {
 
     public GameObject teachControlCanvas;
     public GameObject LControllerModel;
+   
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         teachControlCanvas.GetComponent<Canvas>().enabled = false;
 
         if (Global.guided)
         {
             StartCoroutine(Control());
         }
-	}
-	
-	private IEnumerator Control()
+
+    }
+
+ 
+    private IEnumerator Control()
     {
         yield return new WaitForSeconds(60f);
 
