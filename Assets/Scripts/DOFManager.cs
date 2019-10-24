@@ -22,11 +22,14 @@ public class DOFManager : MonoBehaviour {
 
     // DOFObject's speed
     public float FocusSpeed = 1;
+
+    // The SphereCast's radius
+    public float HitRadius = 1;
 	
 	// Update is called once per frame
 	void Update () {
         // Send out a raycast
-        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance, rayMask))
+        if (Physics.SphereCast(transform.position, HitRadius, transform.forward, out hit, maxDistance, rayMask))
         {
             // Use non-linear interpolation to move DOFObject closer to the new focal distance
             // Simulates the time it takes a tarsier to focus on new objects since they cannot move their eyes
