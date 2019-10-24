@@ -34,6 +34,10 @@ namespace VRTK
         protected bool isShown = false;
         protected Coroutine tweenMenuScaleRoutine;
 
+        private float waitTime = 0.3f;
+        private float timer = 0.0f;
+        private bool timerStart = false;
+
         private void OnEnable()
         {
             controllerEvents = GetComponent<VRTK_ControllerEvents>();
@@ -45,7 +49,9 @@ namespace VRTK
 
             controllerEvents.ButtonOnePressed += ControllerEvents_ButtonOnePressed;
             controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
-            controllerEvents.TriggerPressed += ControllerEvents_TriggerPressed;
+            controllerEvents.TouchpadAxisChanged += ControllerEvents_JoystickMoved;
+            canvasObject.SetActive(true);
+
         }
 
         private void OnDisable()
@@ -54,7 +60,7 @@ namespace VRTK
             {
                 controllerEvents.ButtonOnePressed -= ControllerEvents_ButtonOnePressed;
                 controllerEvents.ButtonTwoPressed -= ControllerEvents_ButtonTwoPressed;
-                controllerEvents.TriggerPressed -= ControllerEvents_TriggerPressed;
+                controllerEvents.TouchpadAxisChanged -= ControllerEvents_JoystickMoved;
             }
         }
 
@@ -62,7 +68,8 @@ namespace VRTK
         {
             if (isShown)
             {
-                PanelMenuItemController.SwipeTop(gameObject);
+                gameObject.GetComponent<Select_Scene_Option>().Execute();
+                HideMenu();
             }
             else
             {
@@ -70,32 +77,35 @@ namespace VRTK
             }
         }
 
-        private void ControllerEvents_ButtonOnePressed(object sender, ControllerInteractionEventArgs e)
+        private void ControllerEvents_JoystickMoved(object sender, ControllerInteractionEventArgs e)
         {
-            if (!isShown)
-            {
-                // Toggle vision effects
-                // vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
-                vision.GetComponent<Wilberforce.Colorblind>().enabled = !vision.GetComponent<Wilberforce.Colorblind>().enabled;
-                vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = !vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled;
-                vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = !vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled;
-                vision.GetComponent<DOFManager>().enabled = !vision.GetComponent<DOFManager>().enabled;
-            }
-            else
-            {
-                PanelMenuItemController.SwipeBottom(gameObject);
-            }
+            float touchpadAngle = e.touchpadAngle;
 
-        }
-
-        private void ControllerEvents_TriggerPressed(object sender, ControllerInteractionEventArgs e)
-        {
             if (isShown)
             {
-                gameObject.GetComponent<Select_Scene_Option>().Execute();
-                HideMenu();
+                if (!timerStart && (touchpadAngle >= 10f && touchpadAngle <= 90f) || (touchpadAngle >= 270f && touchpadAngle <= 350f))
+                {
+                    PanelMenuItemController.SwipeTop(gameObject);
+                    timerStart = true;
 
+                } else if (!timerStart && touchpadAngle >= 100f && touchpadAngle <= 260f)
+                {
+                    PanelMenuItemController.SwipeBottom(gameObject);
+                    timerStart = true;
+                }
             }
+            
+        }
+
+        private void ControllerEvents_ButtonOnePressed(object sender, ControllerInteractionEventArgs e)
+        {
+            // Toggle vision effects
+            // vision.GetComponent<Refocus>().enabled = !vision.GetComponent<Refocus>().enabled;
+            vision.GetComponent<Wilberforce.Colorblind>().enabled = !vision.GetComponent<Wilberforce.Colorblind>().enabled;
+            vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = !vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled;
+            vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = !vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled;
+            vision.GetComponent<DOFManager>().enabled = !vision.GetComponent<DOFManager>().enabled;
+
         }
 
         /// <summary>
@@ -138,21 +148,6 @@ namespace VRTK
             canvasObject.transform.localScale = Vector3.zero;
         }
 
-        //private void Controller_Menu_Popup_DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
-        //{
-        //    // See if we're already in the mode - if so, we'll execute whatever option we're on, else we'll open the menu
-        //    if (isShown)
-        //    {
-        //        HideMenu();
-        //        gameObject.GetComponent<Select_Scene_Option>().Execute();
-        //        UnbindControllerEvents();
-        //    }
-        //    else
-        //    {
-        //        ShowMenu();
-        //        BindControllerEvents();
-        //    }
-        //}
 
         protected virtual void Update()
         {
@@ -172,18 +167,17 @@ namespace VRTK
                     transform.rotation = Quaternion.LookRotation((rotateTowards.position - transform.position) * -1, Vector3.up);
                 }
             }
+
+            if (timer > waitTime)
+            {
+                timer = timer - waitTime;
+                timerStart = false;
+            } else if (timerStart)
+            {
+                timer += Time.deltaTime;
+            }
         }
-
-        //protected virtual void BindControllerEvents()
-        //{
-        //    controllerEvents.TouchpadAxisChanged += ControllerEvents_TouchpadAxisChanged;
-        //}
-
-        //protected virtual void UnbindControllerEvents()
-        //{
-        //    controllerEvents.TouchpadAxisChanged -= ControllerEvents_TouchpadAxisChanged;
-
-        //}
+       
 
         protected virtual void InitTweenMenuScale(bool show)
         {
@@ -221,28 +215,6 @@ namespace VRTK
                 canvasObject.transform.localScale = Vector3.zero;
             }
         }
-
-        //private void ControllerEvents_TouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
-        //{
-        //    Debug.Log("Controller_Menu_Popup: Touchpad Axis Changed!!");
-
-        //    float touchpadAngle = e.touchpadAngle;
-           
-        //    if ((touchpadAngle > 0 && touchpadAngle < 70 || touchpadAngle > 300))
-        //    {
-        //        PanelMenuItemController.SwipeTop(gameObject);
-
-        //    } else if ((touchpadAngle > 0 && touchpadAngle < 240))
-        //    {
-           
-        //        PanelMenuItemController.SwipeBottom(gameObject);
-           
-        //    } else
-        //    {
-        
-        //    }
-        //}
-
         
         
     }
