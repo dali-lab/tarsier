@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/old scenes/Tutorial.unity
     guid: c2616c07f0d09b544a03ad8ea6471354
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/dof.unity
     guid: ee3b65f5ec85da74ab76a3d6431c55c9
   - enabled: 0
