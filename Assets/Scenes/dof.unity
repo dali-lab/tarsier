@@ -1369,6 +1369,7 @@ Transform:
   - {fileID: 2117816839}
   - {fileID: 931962474}
   - {fileID: 316028341}
+  - {fileID: 415446941}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3137,6 +3138,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 413383353}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &415446940
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 145330130}
+    m_Modifications:
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 75.83798
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 12.450357
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.2123513
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e4cdbde305b5d1419b838a6d071bbf2, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!4 &415446941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4863425963469238, guid: 8e4cdbde305b5d1419b838a6d071bbf2,
+    type: 2}
+  m_PrefabInternal: {fileID: 415446940}
+--- !u!1 &415446942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1787902424341182, guid: 8e4cdbde305b5d1419b838a6d071bbf2,
+    type: 2}
+  m_PrefabInternal: {fileID: 415446940}
 --- !u!1 &421532206
 GameObject:
   m_ObjectHideFlags: 0
@@ -4404,6 +4457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Scenes/dof
+  headsetFader: {fileID: 415446942}
 --- !u!114 &573618741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11261,6 +11315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Scenes/brightness
+  headsetFader: {fileID: 415446942}
 --- !u!1 &1419150030
 GameObject:
   m_ObjectHideFlags: 0
@@ -17428,6 +17483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Scenes/forest2
+  headsetFader: {fileID: 415446942}
 --- !u!1 &2117816838
 GameObject:
   m_ObjectHideFlags: 0
