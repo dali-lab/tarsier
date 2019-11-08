@@ -8084,6 +8084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasObject: {fileID: 733333790}
   vision: {fileID: 867229459}
+  scenePanel: {fileID: 0}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 1734923538}
 --- !u!1 &844170225
@@ -10623,7 +10624,7 @@ Prefab:
       value: 'Switch between human and tarsier modes to see the differences in your
         vision.
 
-        Press Y to go to the labyrinth when you are ready.
+        Press Y and select the labyrinth when you are ready.
 
 
         Press A for controller instructions.
@@ -11229,6 +11230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasObject: {fileID: 1872137774}
   vision: {fileID: 867229459}
+  scenePanel: {fileID: 0}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 296658603}
 --- !u!114 &1217610880

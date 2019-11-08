@@ -20,6 +20,7 @@ namespace VRTK
 
         public GameObject canvasObject;
         public GameObject vision;
+        public GameObject scenePanel;
 
         private Transform rotateTowards;
         [Tooltip("The scale multiplier, which relates to the scale of parent interactable object.")]
@@ -51,6 +52,7 @@ namespace VRTK
             controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
             controllerEvents.TouchpadAxisChanged += ControllerEvents_JoystickMoved;
             canvasObject.SetActive(true);
+            //scenePanel.SetActive(false);
 
         }
 
@@ -75,6 +77,7 @@ namespace VRTK
             {
                 ShowMenu();
             }
+            //scenePanel.SetActive(!scenePanel.activeSelf);
         }
 
         private void ControllerEvents_JoystickMoved(object sender, ControllerInteractionEventArgs e)
