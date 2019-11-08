@@ -3514,6 +3514,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4a5bbbdefa6716c479814a103cd93dbf, type: 2}
+    - target: {fileID: 100000, guid: 62cc57e0eb2b2eb408523b6e6f8e4f19, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62cc57e0eb2b2eb408523b6e6f8e4f19, type: 3}
   m_IsPrefabAsset: 0
@@ -4759,7 +4763,8 @@ Prefab:
     - target: {fileID: 114724633294318320, guid: 72f3062501eec8445a904bcb4e04da69,
         type: 2}
       propertyPath: m_Text
-      value: 'Teleport to the tree to start the tarsier experience.
+      value: 'To start the tarsier experience, click Y and select the Matrix using
+        the joystick.
 
 
         Press A for controller instructions.
@@ -5521,7 +5526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &912618446
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7557,6 +7562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasObject: {fileID: 922304566}
   vision: {fileID: 2110161269}
+  scenePanel: {fileID: 0}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 89601208}
 --- !u!114 &1353873137
@@ -9591,6 +9597,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.008803915
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e50778bd37ad423438864818db6ae379, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e50778bd37ad423438864818db6ae379, type: 3}
   m_IsPrefabAsset: 0
@@ -10150,7 +10160,7 @@ GameObject:
   - component: {fileID: 1729171042}
   - component: {fileID: 1729171041}
   - component: {fileID: 1729171040}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10319,7 +10329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1774483279
 Transform:
   m_ObjectHideFlags: 0
