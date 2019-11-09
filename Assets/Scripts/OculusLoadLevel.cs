@@ -26,6 +26,7 @@ public class OculusLoadLevel : MonoBehaviour {
 
     public void Trigger()
     {
+        Debug.Log("Inside Trigger");
         if (!string.IsNullOrEmpty(levelName))
             StartCoroutine(LoadYourSceneAsync());
     }

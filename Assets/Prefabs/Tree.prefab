@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4233935815737316}
   - component: {fileID: 33047982782937780}
   - component: {fileID: 23968531864552372}
-  - component: {fileID: 95024142046510152}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -84,21 +83,3 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345007307554984}
   m_Mesh: {fileID: 4300000, guid: e50778bd37ad423438864818db6ae379, type: 3}
---- !u!95 &95024142046510152
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1345007307554984}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e50778bd37ad423438864818db6ae379, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
