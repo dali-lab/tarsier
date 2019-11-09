@@ -52,7 +52,7 @@ namespace VRTK
             controllerEvents.ButtonTwoPressed += ControllerEvents_ButtonTwoPressed;
             controllerEvents.TouchpadAxisChanged += ControllerEvents_JoystickMoved;
             canvasObject.SetActive(true);
-            //scenePanel.SetActive(false);
+            scenePanel.SetActive(false);
 
         }
 
@@ -77,7 +77,7 @@ namespace VRTK
             {
                 ShowMenu();
             }
-            //scenePanel.SetActive(!scenePanel.activeSelf);
+            scenePanel.SetActive(!scenePanel.activeSelf);
         }
 
         private void ControllerEvents_JoystickMoved(object sender, ControllerInteractionEventArgs e)
