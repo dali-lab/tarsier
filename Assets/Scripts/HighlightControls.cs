@@ -43,7 +43,7 @@ public class HighlightControls : MonoBehaviour
             sign = -1f;
         }
 
-        // Create the highlight objects (I pretty much just used trial and error for their position and size
+        // Create the highlight objects (I pretty much just used trial and error for their position and size)
         ButtonOne = CreateHighlight(new Vector3(-0.00146f * sign, -0.00313f, -0.00488f), new Vector3(0.012f, 0.012f, 0.012f));
         ButtonTwo = CreateHighlight(new Vector3(0.0023f * sign, -0.0007f, 0.0088f), new Vector3(0.012f, 0.012f, 0.012f));
         Touchpad = CreateHighlight(new Vector3(-0.01791f * sign, 0.0067f, 0.0079f), new Vector3(0.016f, 0.016f, 0.016f));
@@ -58,10 +58,10 @@ public class HighlightControls : MonoBehaviour
         UpdateHighlight(ButtonTwo, controllerEvents.buttonTwoTouched, ButtonTwoColor);
         UpdateHighlight(Touchpad, controllerEvents.touchpadTouched, TouchpadColor);
         UpdateHighlight(Trigger, controllerEvents.triggerTouched, TriggerColor);
-        UpdateHighlight(Grip, controllerEvents.gripTouched, GripColor);
+        UpdateHighlight(Grip, controllerEvents.gripHairlinePressed, GripColor);
     }
     
-    // Create the HighlightObjects for abutton
+    // Create the HighlightObjects for a button
     // Takes a position for the object (where the button is in relation to the controller), and a scale
     // Returns an instance of the HighlightObject for the button
     private GameObject CreateHighlight(Vector3 Position, Vector3 Scale)
@@ -69,6 +69,7 @@ public class HighlightControls : MonoBehaviour
         // Instantiate the object at the correct position
         GameObject Instance = Instantiate(HighlightObject, Position, Quaternion.identity, gameObject.transform);
         Instance.transform.localScale = Scale; // Scale the highlight
+        Instance.transform.parent = gameObject.transform;
         // Hide the highlight to start
         Instance.GetComponent<Renderer>().enabled = false;
 
