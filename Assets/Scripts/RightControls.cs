@@ -8,7 +8,7 @@ public class RightControls : MonoBehaviour
 
     private VRTK_ControllerEvents controllerEvents;
 
-    public GameObject panel;
+    public GameObject panel;                //teach panel
     public GameObject controlsL;
     public GameObject controlsR;
 
@@ -33,6 +33,11 @@ public class RightControls : MonoBehaviour
             controllerEvents.ButtonTwoPressed -= DoButtonTwoPressed;
         }
     }
+    private void Awake()
+    {
+        panel.SetActive(true);          //start each scene with teach panel on
+    }
+
 
     private void DebugLogger(uint index, string button, string action, ControllerInteractionEventArgs e)
     {

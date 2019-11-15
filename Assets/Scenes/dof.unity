@@ -9838,7 +9838,7 @@ Prefab:
 
         Press A for controller instructions.
 
-        Press B to dismiss this panel.
+        Press B to turn this panel on/off.
 
 '
       objectReference: {fileID: 0}
@@ -10513,6 +10513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 867229459}
   scenePanel: {fileID: 1054773812}
+  bug: {fileID: 0}
+  tarsierClip: {fileID: 0}
+  humanClip: {fileID: 0}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 0}
 --- !u!114 &1217610880
