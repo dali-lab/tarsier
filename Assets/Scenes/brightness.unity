@@ -1453,6 +1453,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 1482164422}
   scenePanel: {fileID: 1644893150}
+  bug: {fileID: 0}
+  tarsierClip: {fileID: 0}
+  humanClip: {fileID: 0}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 1064161322}
 --- !u!114 &284795284
@@ -2095,7 +2098,7 @@ Prefab:
       propertyPath: m_Text
       value: "Try to find the tree in the maze!\n(Hint: Use tarsier vision)\nMove
         to the forest when you are \nready.\nPress A for controller instructions.\nPress
-        B to dismiss this panel.\n"
+        B to turn this panel on/off.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 114724633294318320, guid: 72f3062501eec8445a904bcb4e04da69,
         type: 2}
@@ -2184,7 +2187,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1023789912949778, guid: 72f3062501eec8445a904bcb4e04da69, type: 2}
       propertyPath: m_Name
-      value: Teach Control (1)
+      value: Teach Control
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f3062501eec8445a904bcb4e04da69, type: 2}
@@ -7258,6 +7261,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376585773278252, guid: 9cd251145c926b94da70a3f87e10a393, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cd251145c926b94da70a3f87e10a393, type: 2}

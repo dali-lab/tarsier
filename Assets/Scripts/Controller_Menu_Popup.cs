@@ -20,6 +20,9 @@ namespace VRTK
 
         public GameObject vision;
         public GameObject scenePanel;
+        private bool humanVision;
+        public AudioSource human;
+        public AudioSource tarsier;
 
         private Transform rotateTowards;
         [Tooltip("The scale multiplier, which relates to the scale of parent interactable object.")]
@@ -31,6 +34,16 @@ namespace VRTK
         protected const float CanvasScaleSize = 0.001f;
 
         protected VRTK_ControllerEvents controllerEvents;
+
+        private void Awake()
+        {
+            //resets each scene to human vision
+            vision.GetComponent<Wilberforce.Colorblind>().enabled = false;
+            vision.GetComponent<UnityEngine.PostProcessing.PostProcessingBehaviour2>().enabled = true;
+            vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = false;
+            vision.GetComponent<DOFManager>().enabled = false;
+            humanVision = true;
+        }
 
         private void OnEnable()
         {
@@ -58,6 +71,7 @@ namespace VRTK
             }
         }
 
+
         private void ControllerEvents_ButtonTwoPressed(object sender, ControllerInteractionEventArgs e)
         {
             scenePanel.SetActive(!scenePanel.activeSelf);
@@ -75,6 +89,19 @@ namespace VRTK
             vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = !vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled;
             vision.GetComponent<DOFManager>().enabled = !vision.GetComponent<DOFManager>().enabled;
 
+            //change audio source depending on the current enabled vision
+            
+            humanVision = !humanVision;
+            if (humanVision == true)
+            {
+                tarsier.mute = true;
+                human.mute = false;
+            }
+            if (humanVision == false)
+            {
+                tarsier.mute = false;
+                human.mute = true;
+            }
         }     
     }
 }

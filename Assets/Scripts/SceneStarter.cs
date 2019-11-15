@@ -21,6 +21,7 @@ public class SceneStarter : MonoBehaviour {
         controls.VisionControl(true);
         controls.StartupControl(false);
 
+
         //switch (SceneManager.GetActiveScene().buildIndex)
         //{
         //    // Tutorial
