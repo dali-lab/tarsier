@@ -404,9 +404,7 @@ GameObject:
   - component: {fileID: 4508279950026478}
   - component: {fileID: 81275405398162580}
   - component: {fileID: 20218802359455652}
-  - component: {fileID: 124726327630653702}
   - component: {fileID: 114039543026516930}
-  - component: {fileID: 114661414610256662}
   - component: {fileID: 114336377414648552}
   - component: {fileID: 114638943721443594}
   - component: {fileID: 114043788832435916}
@@ -1001,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1734834669375530
 GameObject:
   m_ObjectHideFlags: 1
@@ -1883,7 +1881,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -1963,7 +1961,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2003,7 +2001,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2627,7 +2625,7 @@ MonoBehaviour:
   rayMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  maxDistance: 256
+  maxDistance: 100
   DOFObject: {fileID: 4242057813225646}
   FocusSpeed: 1
   HitRadius: 1
@@ -3976,18 +3974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickOnPointerCollision: 0
   autoActivateWithinDistance: 0
---- !u!114 &114661414610256662
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1329714359713256}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95208bde7821444439206312490d46b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: d8f444519beb76443bfea24f3cf23563, type: 2}
 --- !u!114 &114672868442627406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4647,13 +4633,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!124 &124726327630653702
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1329714359713256}
-  m_Enabled: 0
 --- !u!124 &124747266410256254
 Behaviour:
   m_ObjectHideFlags: 1
