@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RController
   - TeleportRenderer
+  - ExcludeTeleport
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - CantTeleport
+  - 
   - 
   - 
   - 
