@@ -20,9 +20,7 @@ namespace VRTK
 
         public GameObject vision;
         public GameObject scenePanel;
-        private bool humanVision;
-        public AudioSource human;
-        public AudioSource tarsier;
+        public static bool humanVision;
 
         private Transform rotateTowards;
         [Tooltip("The scale multiplier, which relates to the scale of parent interactable object.")]
@@ -89,19 +87,8 @@ namespace VRTK
             vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = !vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled;
             vision.GetComponent<DOFManager>().enabled = !vision.GetComponent<DOFManager>().enabled;
 
-            //change audio source depending on the current enabled vision
-            
+            //change boolean to reflect the changed vision
             humanVision = !humanVision;
-            if (humanVision == true)
-            {
-                tarsier.mute = true;
-                human.mute = false;
-            }
-            if (humanVision == false)
-            {
-                tarsier.mute = false;
-                human.mute = true;
-            }
         }     
     }
 }
