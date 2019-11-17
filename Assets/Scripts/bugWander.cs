@@ -50,7 +50,6 @@ public class bugWander : MonoBehaviour {
                 Vector3 newVector = new Vector3(newPosition.x, floor.transform.position.y, newPosition.z);
                 //Debug.Log("new Position: " + newPosition);
                 if (floorCollider.bounds.Contains(newVector)) {
-                    Debug.Log("new Position: " + newPosition);
 
                     transform.position -= transform.forward * moveSpeed * Time.deltaTime;
                 }

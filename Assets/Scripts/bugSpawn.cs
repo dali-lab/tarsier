@@ -10,11 +10,14 @@ public class bugSpawn : MonoBehaviour
     public GameObject[] spawnpoints;
     public Vector3 position;
     public GameObject floor;
+    public GameObject[] katydids;
+    public AudioSource audio;
     public int maxBugs;
     private int bugCount = 0;
 
     private Vector3 maxFloorPoint;
     private Vector3 minFloorPoint;
+
 
     // Use this for initialization
     void Start()
@@ -22,10 +25,12 @@ public class bugSpawn : MonoBehaviour
         StartCoroutine(bugDrop());
         maxFloorPoint = floor.GetComponent<Collider>().bounds.max;
         minFloorPoint = floor.GetComponent<Collider>().bounds.min;
+        
     }
 
     IEnumerator bugDrop()
     {
+        katydids = new GameObject[maxBugs];
         System.Random random1 = new System.Random();
         int randomCounter = 0;
         int randomIndex = 0;
@@ -43,9 +48,10 @@ public class bugSpawn : MonoBehaviour
 
             if (!Physics.CheckSphere(position, 0.03f))
             {
-                GameObject instance = Instantiate(bug, position, Quaternion.Euler(0, yRot, 0));
-                bugCount += 1;
+                GameObject instance = Instantiate(bug, position, Quaternion.Euler(0, yRot, 0)) as GameObject;                
                 instance.GetComponent<bugWander>().floor = floor;
+                katydids[bugCount] = instance;
+                bugCount += 1;
             }
 
             yield return new WaitForSeconds(0.1f);

@@ -20,7 +20,7 @@ namespace VRTK
 
         public GameObject vision;
         public GameObject scenePanel;
-        private bool humanVision;
+        public static bool humanVision;
         public AudioSource human;
         public AudioSource tarsier;
 
