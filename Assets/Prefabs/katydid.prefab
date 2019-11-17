@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 65900910965393766}
   - component: {fileID: 23901261754239696}
   - component: {fileID: 114964805842852572}
+  - component: {fileID: 114957112401477304}
   m_Layer: 0
   m_Name: katydid
   m_TagString: Untagged
@@ -827,21 +828,21 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fe7bfc3aad5300e41854b609541f7007, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 65ebf84318b2c7e41be3266f15dc943a, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 0
+  Priority: 150
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 100
   Pan2D: 0
   rolloffMode: 1
-  BypassEffects: 1
+  BypassEffects: 0
   BypassListenerEffects: 1
   BypassReverbZones: 1
   rolloffCustomCurve:
@@ -873,7 +874,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -913,6 +914,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114957112401477304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201221132081092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1839319ffe3b83c4e9faa2f94dfaf948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82926742682026644}
 --- !u!114 &114964805842852572
 MonoBehaviour:
   m_ObjectHideFlags: 1

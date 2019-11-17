@@ -338,6 +338,8 @@ GameObject:
   - component: {fileID: 114701180257103780}
   - component: {fileID: 114674738255329314}
   - component: {fileID: 114955629318177926}
+  - component: {fileID: 114426918785093176}
+  - component: {fileID: 114501491521409988}
   m_Layer: 0
   m_Name: RightControllerScriptAlias
   m_TagString: Untagged
@@ -356,6 +358,9 @@ GameObject:
   - component: {fileID: 114562684769562758}
   - component: {fileID: 114597020242656132}
   - component: {fileID: 114522211335370094}
+  - component: {fileID: 114449285569738298}
+  - component: {fileID: 114159187028177086}
+  - component: {fileID: 114412810268910144}
   m_Layer: 0
   m_Name: LeftControllerScriptAlias
   m_TagString: Untagged
@@ -999,7 +1004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1734834669375530
 GameObject:
   m_ObjectHideFlags: 1
@@ -2668,13 +2673,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e279c9d4dc02e46c8a1874c404b65e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bug: {fileID: 1201221132081092, guid: 59b0855a105f54fe788681cb295936f4, type: 2}
-  treebug: {fileID: 1622986961033918, guid: 932d2a829a476884db0b45ccc6d3b234, type: 2}
+  bug: {fileID: 1094330295482448, guid: d2a52e94f5e7b1e43b6bcf09699a2694, type: 2}
+  treebug: {fileID: 1094330295482448, guid: c817925eff469d64ebbb4e691125652b, type: 2}
   spawnpoints:
   - {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   floor: {fileID: 0}
-  maxBugs: 20
+  katydids: []
+  audio: {fileID: 0}
+  maxBugs: 15
 --- !u!114 &114060945984609042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2902,6 +2909,18 @@ MonoBehaviour:
   cancelButton: {fileID: 0}
   chooseButton: {fileID: 0}
   playareaSync: 1
+--- !u!114 &114159187028177086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273908171672962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customColliderContainer: {fileID: 0}
 --- !u!114 &114167012671321184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3227,6 +3246,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Control Hints
+--- !u!114 &114412810268910144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273908171672962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabButton: 7
+  grabPrecognition: 0
+  throwMultiplier: 1
+  createRigidBodyWhenNotTouching: 0
+  controllerAttachPoint: {fileID: 0}
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
 --- !u!114 &114419377205082256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3246,7 +3283,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.08839047, b: 0, a: 1}
+    m_NormalColor: {r: 0.99607843, g: 0.6901961, b: 0.3647059, a: 1}
     m_HighlightedColor: {r: 1, g: 0.08839047, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 1, g: 0.5803922, b: 0.5803922, a: 1}
@@ -3279,6 +3316,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114426918785093176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267054688983442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947b27445602ed640b885db7e667dfc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabButton: 7
+  grabPrecognition: 0
+  throwMultiplier: 1
+  createRigidBodyWhenNotTouching: 0
+  controllerAttachPoint: {fileID: 0}
+  controllerEvents: {fileID: 0}
+  interactTouch: {fileID: 0}
 --- !u!114 &114445966811992910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3300,6 +3355,22 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114449285569738298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273908171672962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328084ddfb9cf434aa14c77d2af0826e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humanKatydidAudio: {fileID: 8300000, guid: 65ebf84318b2c7e41be3266f15dc943a, type: 3}
+  tarsierKatydidAudio: {fileID: 8300000, guid: 4feed5b58bca4424dac736fc61c9ad98, type: 3}
+  audioSource: {fileID: 82926742682026644, guid: 59b0855a105f54fe788681cb295936f4,
+    type: 2}
+  bugController: {fileID: 1733887317888974}
 --- !u!114 &114456330490430398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3448,6 +3519,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114501491521409988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267054688983442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e104da36bd3b04b90c6ae969ac66dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customColliderContainer: {fileID: 0}
 --- !u!114 &114506022576954764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3916,6 +3999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 1329714359713256}
   scenePanel: {fileID: 1878960267536362}
+  human: {fileID: 0}
+  tarsier: {fileID: 0}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 114528411138333500}
 --- !u!114 &114632181107649650
