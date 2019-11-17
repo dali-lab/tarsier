@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3e3575838c4ef7c489d335ec42149560, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17412741, g: 0.21774648, b: 0.2999419, a: 1}
+  m_IndirectSpecularColor: {r: 0.032573715, g: 0.02209878, b: 0.015802411, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000014, guid: 18a9251e351c59841ac43ff478cb1552,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -223,6 +224,21 @@ Prefab:
       propertyPath: panel
       value: 
       objectReference: {fileID: 762270676}
+    - target: {fileID: 20549015029650192, guid: 166d4f7379b9e4b47ad1f258a430d8ae,
+        type: 2}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 20218802359455652, guid: 166d4f7379b9e4b47ad1f258a430d8ae,
+        type: 2}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 20917407896575072, guid: 166d4f7379b9e4b47ad1f258a430d8ae,
+        type: 2}
+      propertyPath: far clip plane
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
   m_IsPrefabAsset: 0
@@ -1222,7 +1238,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4940136779477560, guid: 9e56b1b8f936a462f992adb72f149b4f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.95
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 4940136779477560, guid: 9e56b1b8f936a462f992adb72f149b4f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1247,14 +1263,6 @@ Prefab:
     - target: {fileID: 4940136779477560, guid: 9e56b1b8f936a462f992adb72f149b4f, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1626512924285596, guid: 9e56b1b8f936a462f992adb72f149b4f, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 1626512924285596, guid: 9e56b1b8f936a462f992adb72f149b4f, type: 2}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e56b1b8f936a462f992adb72f149b4f, type: 2}
