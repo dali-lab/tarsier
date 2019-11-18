@@ -2,7 +2,15 @@ fileFormatVersion: 2
 guid: f81cbf50908477c479f6e27f4d120a2a
 ModelImporter:
   serializedVersion: 23
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: phongE1
+    2100002: tree_bark
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: tallSaplingGrouped2
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -54,8 +62,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

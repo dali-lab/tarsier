@@ -11,7 +11,6 @@ public class bugSpawn : MonoBehaviour
     public Vector3 position;
     public GameObject floor;
     public GameObject[] katydids;
-    public AudioSource audio;
     public int maxBugs;
     private int bugCount = 0;
 

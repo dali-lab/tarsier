@@ -21,8 +21,6 @@ namespace VRTK
         public GameObject vision;
         public GameObject scenePanel;
         public static bool humanVision;
-        public AudioSource human;
-        public AudioSource tarsier;
 
         private Transform rotateTowards;
         [Tooltip("The scale multiplier, which relates to the scale of parent interactable object.")]
@@ -95,17 +93,7 @@ namespace VRTK
 
 
             humanVision = !humanVision;
-            if (humanVision == true)
-            {
-                tarsier.mute = true;
-                human.mute = false;
-            }
 
-            if (humanVision == false)
-            {
-                tarsier.mute = false;
-                human.mute = true;
-            }
         }     
     }
 }
