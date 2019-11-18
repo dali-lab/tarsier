@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23902372604158388}
   - component: {fileID: 136190673684638868}
   - component: {fileID: 135223963129414332}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: buttress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,9 +36,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626512924285596}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,7 +84,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626512924285596}
-  m_Mesh: {fileID: 4300000, guid: e50778bd37ad423438864818db6ae379, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bdd8c72bebadbf749b2962376e10a06e, type: 3}
 --- !u!135 &135223963129414332
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -95,8 +95,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 480
-  m_Center: {x: 0, y: -450, z: 0}
+  m_Radius: 2
+  m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!136 &136190673684638868
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -106,7 +106,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 180
-  m_Height: 3000
+  m_Radius: 1.4
+  m_Height: 18
   m_Direction: 1
-  m_Center: {x: 0, y: 900, z: 0}
+  m_Center: {x: 0, y: 7, z: 0}

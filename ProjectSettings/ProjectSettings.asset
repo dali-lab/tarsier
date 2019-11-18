@@ -401,8 +401,7 @@ PlayerSettings:
     m_Devices: []
   - m_BuildTarget: Standalone
     m_Enabled: 1
-    m_Devices:
-    - OpenVR
+    m_Devices: []
   - m_BuildTarget: Standalone
     m_Enabled: 1
     m_Devices:
