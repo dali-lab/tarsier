@@ -6,12 +6,12 @@ public class bugSpawn : MonoBehaviour
 {
 
     public GameObject bug;
-    public GameObject treebug;
-    public GameObject[] spawnpoints;
+    public GameObject treeBug;
+    public GameObject spawnContainer;
     public Vector3 position;
     public GameObject floor;
+    public int totalGroundBugs;
     public GameObject[] katydids;
-    public int maxBugs;
     private int bugCount = 0;
 
     private Vector3 maxFloorPoint;
@@ -29,18 +29,18 @@ public class bugSpawn : MonoBehaviour
 
     IEnumerator bugDrop()
     {
-        katydids = new GameObject[maxBugs];
-        System.Random random1 = new System.Random();
-        int randomCounter = 0;
-        int randomIndex = 0;
+        katydids = new GameObject[totalGroundBugs];
 
-        while  (randomCounter < 2)
+        foreach (Transform spawnpoint in spawnContainer.transform)
         {
-            randomIndex = random1.Next(0, spawnpoints.Length);
-            Instantiate(treebug, spawnpoints[randomIndex].transform.position, spawnpoints[randomIndex].transform.rotation);     
-            randomCounter++;
+            //if (Random.Range(0, 1) == 1)
+            //{
+                Instantiate(treeBug, spawnpoint.transform.position, spawnpoint.transform.rotation);
+            //}
+
         }
-        while (bugCount < maxBugs)
+
+        while (bugCount < totalGroundBugs)
         {
             position = new Vector3(Random.Range(minFloorPoint.x, maxFloorPoint.x), 1f, Random.Range(minFloorPoint.z, maxFloorPoint.z));
             float yRot = Random.Range(-70, 70);

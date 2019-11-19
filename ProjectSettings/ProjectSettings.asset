@@ -152,7 +152,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DALI.TarsierLobbyBake
+    Android: com.DALI.TarsierHomeStretch
     Standalone: unity.Valve.SteamVR
     iOS: com.Company.ProductName
     tvOS: com.Company.ProductName
@@ -401,7 +401,8 @@ PlayerSettings:
     m_Devices: []
   - m_BuildTarget: Standalone
     m_Enabled: 1
-    m_Devices: []
+    m_Devices:
+    - OpenVR
   - m_BuildTarget: Standalone
     m_Enabled: 1
     m_Devices:
