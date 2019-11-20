@@ -29,12 +29,7 @@ public class bugSpawn : MonoBehaviour
 
     IEnumerator bugDrop()
     {
-        katydids = new GameObject[totalGroundBugs];
-
-        foreach (Transform spawnpoint in spawnContainer.transform)
-        {
-                Instantiate(treeBug, spawnpoint.transform.position, spawnpoint.transform.rotation);
-        }
+        katydids = new GameObject[totalGroundBugs + spawnContainer.transform.childCount];
 
         while (bugCount < totalGroundBugs)
         {
@@ -50,6 +45,13 @@ public class bugSpawn : MonoBehaviour
             }
 
             yield return new WaitForSeconds(0.1f);
+        }
+
+        foreach (Transform spawnpoint in spawnContainer.transform)
+        {
+            GameObject instance = Instantiate(treeBug, spawnpoint.transform.position, spawnpoint.transform.rotation);
+            katydids[bugCount] = instance;
+            bugCount += 1;
         }
 
     }

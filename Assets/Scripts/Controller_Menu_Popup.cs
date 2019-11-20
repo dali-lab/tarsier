@@ -20,6 +20,7 @@ namespace VRTK
 
         public GameObject vision;
         public GameObject scenePanel;
+        public AdjustBugColor AdjustBugColorScript;
         public static bool humanVision;
 
         private Transform rotateTowards;
@@ -87,12 +88,8 @@ namespace VRTK
             vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled = !vision.GetComponent<UnityStandardAssets.ImageEffects.DepthOfField>().enabled;
             vision.GetComponent<DOFManager>().enabled = !vision.GetComponent<DOFManager>().enabled;
 
-
-            //change audio source depending on the current enabled vision
-
-
-
             humanVision = !humanVision;
+            AdjustBugColorScript.SwitchColor(humanVision);
 
         }     
     }

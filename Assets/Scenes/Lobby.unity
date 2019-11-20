@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 1010994287}
   - component: {fileID: 1010994286}
   - component: {fileID: 1010994285}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: horizon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,56 +1015,6 @@ Prefab:
       propertyPath: panel
       value: 
       objectReference: {fileID: 74276548}
-    - target: {fileID: 1437490269083660, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190732251294954, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -15.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4206742817581524, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114490468061215848, guid: 166d4f7379b9e4b47ad1f258a430d8ae,
-        type: 2}
-      propertyPath: autoManageVRSettings
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114490468061215848, guid: 166d4f7379b9e4b47ad1f258a430d8ae,
-        type: 2}
-      propertyPath: autoLoadSetup
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166d4f7379b9e4b47ad1f258a430d8ae, type: 2}
   m_IsPrefabAsset: 0

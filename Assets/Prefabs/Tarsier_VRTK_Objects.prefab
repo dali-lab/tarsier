@@ -279,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1198634908455692
 GameObject:
   m_ObjectHideFlags: 1
@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 4188444614337548}
   - component: {fileID: 114562684769562758}
   - component: {fileID: 114597020242656132}
+  - component: {fileID: 114550911151670470}
   - component: {fileID: 114522211335370094}
   - component: {fileID: 114449285569738298}
   - component: {fileID: 114470087795257572}
@@ -675,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1438768470150314
 GameObject:
   m_ObjectHideFlags: 1
@@ -1437,14 +1438,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1730409502136336}
-  m_LocalRotation: {x: -0, y: 0.99740374, z: -0, w: -0.0720132}
-  m_LocalPosition: {x: -17.8, y: 6.75, z: -14.93}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -15.67, y: 1.06, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4657879722094736}
   m_Father: {fileID: 4491787448911302}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 188.25899, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4232296707630678
 Transform:
   m_ObjectHideFlags: 1
@@ -2729,7 +2730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: X - Toggle vision
+  m_Text: "X - Human \u2194 Tarsier"
 --- !u!114 &114068618172895106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2999,7 +3000,7 @@ MonoBehaviour:
   targetListPolicy: {fileID: 0}
   navMeshData: {fileID: 0}
   navMeshLimitDistance: 0
-  snapToNearestFloor: 1
+  snapToNearestFloor: 0
   applyPlayareaParentOffset: 0
   customRaycast: {fileID: 0}
 --- !u!114 &114296264116620762
@@ -3711,6 +3712,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Scenes/brightness
   headsetFader: {fileID: 1345358995546882}
+--- !u!114 &114550911151670470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273908171672962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f705fd926451754cbf11f7772428467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  humanColor: {r: 0.40784314, g: 0.38431373, b: 0.37254903, a: 0}
+  tarsierColor: {r: 0.6886792, g: 0.664857, b: 0.6529459, a: 1}
+  bugMaterial: {fileID: 2100000, guid: b96de2a24a6f88a43a007dac59940c66, type: 2}
 --- !u!114 &114562684769562758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3878,6 +3893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vision: {fileID: 1329714359713256}
   scenePanel: {fileID: 1698096176911014}
+  AdjustBugColorScript: {fileID: 114550911151670470}
   zoomScaleMultiplier: 1
   PanelMenuItemController: {fileID: 0}
 --- !u!114 &114632181107649650
@@ -5235,7 +5251,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1776105590430794}
   m_LocalRotation: {x: -0.132285, y: 0.0022863024, z: 0.0005221856, w: 0.9912089}
-  m_LocalPosition: {x: 0, y: 0, z: 12.4}
+  m_LocalPosition: {x: 0, y: 0, z: 12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224403083377815286}
@@ -5243,7 +5259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -15.203001, y: 0.261, z: 0.026}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -158.7, y: 88.4}
+  m_AnchoredPosition: {x: -191.5, y: 88.4}
   m_SizeDelta: {x: 77.55, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224300409546473940
