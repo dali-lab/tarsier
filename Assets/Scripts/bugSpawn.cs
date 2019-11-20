@@ -33,11 +33,7 @@ public class bugSpawn : MonoBehaviour
 
         foreach (Transform spawnpoint in spawnContainer.transform)
         {
-            //if (Random.Range(0, 1) == 1)
-            //{
                 Instantiate(treeBug, spawnpoint.transform.position, spawnpoint.transform.rotation);
-            //}
-
         }
 
         while (bugCount < totalGroundBugs)
